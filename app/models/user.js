@@ -14,7 +14,11 @@ var UserSchema   = new Schema({
   favorites: {type: Array},
 
 	subscriptions: {type: Array},
-	subscribers: {type: Array}
+	subscribers: {type: Array},
+
+	photo: String,
+
+	comments: {type: Number, default: 0}
 });
 
 // hash the password before the user is saved

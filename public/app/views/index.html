@@ -62,6 +62,9 @@
 
     <!-- <script src="app/services/userService.js"></script> -->
 
+    <!-- ng-file-upload -->
+<!-- <script src="ng-file-upload.min.js"></script> -->
+
     <!-- Main Angular App Files -->
     <script src="app/app.routes.js"></script>
     <script src="app/app.js"></script>
@@ -69,8 +72,8 @@
 
   <body ng-app="myApp" ng-controller="mainController as main">
 
-  
-    
+
+
 
 
     <!-- Navbar -->
@@ -160,12 +163,12 @@
           <!-- <button ng-click="main.setSelected('charm')">setSelected{{main.selected}}</button>
         	<button ng-click="main.getSelected()">getSelected</button>{{main.selected}} -->
           <ul class="list-display-row">
-            <li><svg class="lnr lnr-alarm"><use xlink:href="#lnr-alarm"></use></svg></li>
-            <li><svg class="lnr lnr-magnifier"><use xlink:href="#lnr-magnifier"></use></svg></li>
-            <li><svg class="lnr lnr-pencil"><use xlink:href="#lnr-pencil"></use></svg><a ui-sref="postCreate"></a></li>
-            <li><a ng-if="!main.loggedIn" class="button" ng-click="main.doLogin()" class="button"></a></li>
-            <li><a ng-if="main.loggedIn" class="button" ng-click="main.doLogout()" class="button"></a></li>
-            <li><svg class="lnr lnr-menu"><use xlink:href="#lnr-menu"></use></svg></li>
+            <!-- <li><svg class="lnr lnr-alarm"><use xlink:href="#lnr-alarm"></use></svg></li>
+            <li><svg class="lnr lnr-magnifier"><use xlink:href="#lnr-magnifier"></use></svg></li> -->
+            <li class="write"><svg class="lnr lnr-pencil"><use xlink:href="#lnr-pencil"></use></svg><a ui-sref="postCreate"></a></li>
+            <li class="nav-profile"><a ng-if="!main.loggedIn" class="button" ng-click="main.doLogin()" class="button">Sign In</a></li>
+            <li><a ng-if="main.loggedIn" class="button" ng-click="main.doLogout()" class="button">Sign Out</a></li>
+            <!-- <li><svg class="lnr lnr-menu"><use xlink:href="#lnr-menu"></use></svg></li> -->
 
           </ul>
 
@@ -192,5 +195,5 @@
 
   </body>
 
-<div>MongoDB Express Angular Node LinearIcons Gulp Bower Sass Github Repository location AWS HTML5 CSS3 JS</div>
+<!-- <div>MongoDB Express Angular Node LinearIcons Gulp Bower Sass Github Repository location AWS HTML5 CSS3 JS</div> -->
 </html>

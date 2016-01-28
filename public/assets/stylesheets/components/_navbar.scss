@@ -208,6 +208,26 @@ $navbar-options-space-filler: 30px;
 
 .navbar-right {
 	@extend %container-right;
+	padding-right: $base-line-height;
+}
+
+.write {
+	padding-right: 35px;
+	color: $color-primary;
+	margin-right: 10px;
+	font-size: 20px;
+}
+
+.button {
+	@extend %button;
+	color: $color-primary;
+	border: 1.5px solid $color-primary;
+}
+
+.nav-profile {
+	padding-right: $base-line-height;
+	color: $color-primary;
+	font-size: 20px;
 }
 
 // .button {

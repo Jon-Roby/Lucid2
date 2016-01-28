@@ -10,6 +10,59 @@ angular.module('userDisplayCtrl', ['userDisplayService'])
 			vm.userData = data;
 		});
 
+	vm.uploadPhoto = function() {
+		// Must be turned into object for AJAX request
+		console.log(vm.uploadedPhoto);
+		var uploadedPhoto = {'photo': vm.uploadedPhoto};
+		UserDisplay.uploadPhoto($stateParams.user_id, uploadedPhoto)
+			.success(function(data) {
+				vm.message = data.message;
+			});
+	};
+
+	// vm.add = function(){
+  // 	var file = document.getElementById('file').files[0];
+  //   var fileReader = new FileReader();
+	//
+	// 	// console.log(fileReader.readAsArrayBuffer(file));
+	//
+	// 	fileReader.onloadend = function(event)	{
+	//     var data = event.target.result;
+	//     	//send you binary data via $http or $resource or do anything else with it
+	// 			console.log(data);
+	// 			console.log("here");
+	// 	}
+	//
+	// 	fileReader.readAsBinaryString(file);
+
+		vm.add = function(){
+		  var f = document.getElementById('file').files[0],
+		      r = new FileReader();
+		  	r.onloadend = function(e){
+		    var data = e.target.result;
+				var photo = {"photo": data};
+				UserDisplay.uploadPhoto($stateParams.user_id, photo)
+		    //send you binary data via $http or $resource or do anything else with it
+		  }
+		  r.readAsBinaryString(f);
+		}
+
+
+		// console.log("here1");
+		//
+		// var photo = {'photo': file.name};
+
+		// UserDisplay.uploadPhoto($stateParams.user_id, photo)
+		// 	.success(function(data) {
+		// 		vm.message = data.message;
+		// 	});
+
+
+
+
+
+
+
   // vm.saveUser = function() {
 	// 	vm.processing = true;
 	// 	vm.message = '';

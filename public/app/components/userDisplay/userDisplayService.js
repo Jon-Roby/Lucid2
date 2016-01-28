@@ -1,3 +1,5 @@
+
+
 angular.module('userDisplayService', [])
 
 .factory('UserDisplay', function($http) {
@@ -28,6 +30,11 @@ angular.module('userDisplayService', [])
 	// delete a user
 	userDisplayFactory.delete = function(id) {
 		return $http.delete('/api/users/' + id);
+	};
+
+	userDisplayFactory.uploadPhoto = function(id, photo) {
+
+		return $http.put('/api/users/' + id + '/profile/', photo);
 	};
 
 	// return our entire userDisplayFactory object

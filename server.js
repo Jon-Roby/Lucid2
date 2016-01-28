@@ -10,6 +10,8 @@ if (process.env.NODE_ENV == undefined ) {
 
 var path 	     = require('path');
 
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -21,6 +23,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(morgan('dev'));
+
+
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/lucid'); //  config.database
 

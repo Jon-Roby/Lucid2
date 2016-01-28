@@ -2,6 +2,7 @@ var bodyParser  = require('body-parser');
 var User        = require('../models/user');
 var Post        = require('../models/post');
 var jwt         = require('jsonwebtoken');
+var cloudinary  = require('cloudinary');
 
 if (process.env.NODE_ENV == undefined) {
 	var config      = require('../../config/auth.js');
@@ -180,7 +181,9 @@ module.exports = function(app, express) {
 			User.findById(req.params.user_id, function(err, user) {
 				// if (err) res.send(err);
 				res.json(user);
-			});
+			})
+
+
 		})
 
 		.put(function(req, res) {
@@ -204,6 +207,32 @@ module.exports = function(app, express) {
 				res.json({ message: 'Successfully deleted' });
 			});
 		});
+
+		apiRouter.route('/users/:user_id/profile')
+			.get(function(req, res) {
+				User.findById(req.params.user_id, function(err, user) {
+					res.json(user);
+				});
+			})
+			.put(function(req, res) {
+
+				// cloudinary.config({
+  			// 	cloud_name: 'sample',
+  			// 	api_key: '874837483274837',
+  			// 	api_secret: 'a676b67565c6767a6767d6767f676fe1'
+				// });
+
+				console.log(req.decoded);
+				console.log(req.body);
+				console.log(req.body.photo);
+				console.log(req.body.photo.photo);
+
+				// cloudinary.uploader.upload(req.body.photo, function(result) {
+  			// 	console.log(result)
+				// });
+
+			});
+
 
 	apiRouter.route('/users/:user_id/bookmark')
 		.put(function(req, res) {
@@ -306,12 +335,11 @@ module.exports = function(app, express) {
 		});
 
 
-	apiRouter.route('/users/:user_id/profile')
-		.get(function(req, res) {
-			User.findById(req.params.user_id, function(err, user) {
-				res.json(user);
-			});
-		});
+
+
+
+
+
 
 
 

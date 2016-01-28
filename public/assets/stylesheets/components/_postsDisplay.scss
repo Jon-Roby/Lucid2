@@ -12,6 +12,13 @@
 
 .postsDisplay-header {
   @extend %column-header;
+  color: $color-primary;
+}
+
+.lnr-file-empty {
+  transform: translate(0px, 6px);
+  color: $color-secondary;
+  width: 300;
 }
 
 .postsDisplay-card {
