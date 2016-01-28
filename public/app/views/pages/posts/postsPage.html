@@ -1,0 +1,57 @@
+<div class="container-lessons">
+
+	<div class="lessons-left">
+		<div>Icons</div>
+		<div ng-repeat="icon in post.icons">
+			<div><a href="/users/{{icon._id}}/profile">{{ icon.username }}</a></div>
+			<div ng-repeat="postArray in icon.posts | limitTo: 3"> <!-- Also icon.posts.slice(0,2) -->
+				<div ng-repeat="(key, value) in postArray">
+					<div><a href="/posts/{{value}}">{{ key }}</a></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="lessons-center">
+
+			<div ng-repeat="post in post.posts">
+				<div class="card-lessons">
+
+					<div class="lessons-top">
+						<div class="lessons-author">{{ post.authorName }}</div>
+
+						<time am-time-ago="post.createdAt"></time>
+					</div>
+
+					<div>
+						<a ng-href="/posts/{{ post._id }}" class="lessons-title">{{ post.title }}</a>
+						<div class="lessons-body">{{ post.body }}</div>
+
+					</div>
+
+					<div class="lessons-bottom">
+						<div>{{ post.likes.length }} likes</div>
+						<div>0 responses</div>
+					</div>
+
+				</div>
+
+			</div>
+
+	</div>
+
+	<div class="lessons-right">
+		{{ post.userData.name }}
+
+		<div>Bookmarks</div>
+		<div ng-repeat="n in post.userData.bookmarks track by $index" >
+			<div ng-repeat="(key, value) in n track by $index">
+	    	<div><a href="/posts/{{value}}">{{ key }}</a></div>
+			</div>
+		</div>
+
+		<div>Share</div>
+
+	</div>
+</div>

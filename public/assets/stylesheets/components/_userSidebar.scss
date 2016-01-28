@@ -1,0 +1,63 @@
+#userSidebar-container {
+  @extend %column-container;
+  background-color: #22313F;
+
+
+
+  position: fixed;
+  height: 100%;
+
+  width: 225px; // not sure why it is necessary to reset this
+
+  display: flex;
+  flex-direction: column;
+
+
+  // div {
+  //   flex: 1;
+  // }
+
+
+
+  // color: #34495E;
+  // background-color: #22313F; //#FAFAFA
+  // border: 1px solid #34495E; /*  */
+  // height: 1000px;
+
+  // border-right: 1px solid white;
+
+  background-color: #fafafa;
+
+  
+
+
+  border-left: 1px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+
+  // apply on click
+  // visibility: hidden;
+}
+
+
+#userSidebar-header {
+  @extend %column-header;
+}
+
+
+
+// #userSidebartitle {
+//   color: white;
+//   border-color: white;
+// }
+//
+// #listsa a {
+//   color: $color-secondary;
+// }
+
+.userSidebar-subheader {
+  // padding-top: 8px;
+  // padding-bottom: 8px;
+  text-decoration: none;
+  color: $color-primary;
+}

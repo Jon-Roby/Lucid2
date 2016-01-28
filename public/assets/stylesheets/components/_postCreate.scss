@@ -1,0 +1,90 @@
+.container-write {
+
+
+  max-width: 1000px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.container-write-2 {
+  display: flex;
+  flex-direction: column;
+
+  float: right;
+  width: 830px;
+  float: right;
+}
+
+
+
+.form-write {
+  width: 80%;
+}
+
+.form-write div {
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.button-write {
+  color: white;
+  width: 100px;
+  margin-top: 10px; /* bad */
+
+}
+
+.input-write {
+  border: none;
+
+}
+
+textarea {
+padding-top: 30px;
+
+  width: 1000px;
+  height: 500px;
+  border: none;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover
+
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+}
+
+.form-input-title input {
+  font-family: "Archer SSm A", "Archer SSm B";
+	font-style: normal;
+	font-weight: 600;
+
+	font-size: 1.3em;
+	color: $color-primary;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.form-input-body textarea {
+
+  font-family: "Montserrat-Light";
+	font-style: normal;
+
+
+	font-size: 1.1em;
+	color: $color-primary;
+
+  letter-spacing: 1px;
+  border: none;
+}

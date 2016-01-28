@@ -1,0 +1,45 @@
+<div>user Display View</div>
+{{user.userData._id}}
+{{user.userData.username}}
+{{user.userData.upvotes}}
+
+
+<div>Bookmarks</div>
+<div ng-repeat="bookmark in user.userData.bookmarks">
+    <div ng-repeat="(key, value) in bookmark">
+      <!-- <div><a href="/posts/{{value}}">{{ key }}</a></div> -->
+      {{key}}
+    </div>
+  </div>
+</div>
+
+
+
+<div>posts</div>
+<div ng-repeat="post in user.userData.posts">
+    <div ng-repeat="(key, value) in post">
+      <div><a href="/posts/{{value}}">{{ key }}</a></div>
+    </div>
+  </div>
+</div>
+
+
+<div>Subscribers</div>
+<div ng-repeat="subscriber in user.userData.subscribers">
+    <div ng-repeat="(key, value) in subscriber">
+      <div><a href="/tuts/{{value}}">{{ key }}</a></div>
+    </div>
+  </div>
+</div>
+
+<div>Subscriptions</div>
+<div ng-repeat="subscription in user.userData.subscriptions">
+    <div ng-repeat="(key, value) in subscription">
+      <div><a href="/tuts/{{value}}">{{ key }}</a></div>
+    </div>
+  </div>
+</div>
+
+<div>
+//favorites
+</div>

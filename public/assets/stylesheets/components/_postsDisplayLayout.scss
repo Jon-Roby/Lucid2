@@ -1,0 +1,26 @@
+
+
+/* postsDisplayLayout.html */
+
+
+.postsDisplayLayout-container {
+  @extend %container;
+  height: 100%;
+  // background-color: orange;
+}
+
+.postsDisplayLayout-container-left {
+  @extend %container-left;
+}
+
+.postsDisplayLayout-container-inner-left {
+  @extend %container-inner-left;
+}
+
+.postsDisplayLayout-container-inner-right {
+  @extend %container-inner-right;
+}
+
+.postsDisplayLayout-container-right {
+  @extend %container-right;
+}

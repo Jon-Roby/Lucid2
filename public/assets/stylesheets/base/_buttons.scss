@@ -1,0 +1,19 @@
+// Eliminate magic numbers
+%button {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 18px;
+  padding-right: 18px;
+
+	border: 1px solid #C8C8C8;
+	color: #C8C8C8;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover {
+    border: 1px solid black;
+    color: black;
+  	-webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+}

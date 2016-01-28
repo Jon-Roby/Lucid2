@@ -1,0 +1,60 @@
+#icons-container {
+  @extend %column-container;
+
+  // border: 1px solid #f2f2f2;
+  // border-top: 1px solid white;
+  background-color: white;
+  height: 720px;
+}
+
+#icons-header {
+  @extend %column-header;
+
+}
+
+#icons-icon {
+  padding-top: $base-line-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+
+#icons-link {
+  // padding-top: 8px;
+  // padding-bottom: 8px;
+
+}
+
+#icons-link a {
+  text-decoration: none;
+  color: $color-primary;
+}
+
+#icon-photo {
+  height: $base-line-height * 4;
+  width: $base-line-height * 4;
+  border: 2px solid $color-secondary;
+  background-color: $color-primary;
+  margin-right: $base-line-height;
+
+  align-self: center;
+}
+
+.lnr-diamond {
+  transform: translate(0px, 6px);
+  color: $color-secondary;
+  width: 300;
+}
+
+.popover {
+  border: 1px solid black;
+  position: absolute;
+  z-index: 100;
+  width: 30px;
+  background-color: white;
+  transform: translate(-120px, -120px);
+  transition: .5s ease-in-out;
+
+}

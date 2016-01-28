@@ -1,0 +1,41 @@
+<div class="container-write">
+	<!-- <div class="page-header">
+		<h1 ng-if="post.type == 'create'">Create Post</h1>
+		<h1 ng-if="post.type == 'edit'">Edit Post</h1>
+	</div> -->
+
+	<div class="options-write">
+		<div>
+			<button type="submit" class="button-write" ng-if="post.type == 'create'">Publish</button>
+			<button type="submit" class="button-write" ng-if="post.type == 'edit'">Edit</button>
+		</div>
+	</div>
+
+	<div class="form-write">
+		<form ng-submit="post.savePost()">
+
+			<div>
+				<button type="submit" class="button-write" ng-if="post.type == 'create'">Publish</button>
+				<button type="submit" class="button-write" ng-if="post.type == 'edit'">Edit</button>
+			</div>
+
+			<div class="form-input-title">
+				<input type="text" class="input-write" placeholder="Title" ng-model="post.postData.title">
+			</div>
+
+			<div class="form-input-body">
+				<textarea class="input-textarea" placeholder="Lesson" ng-model="post.postData.body">
+			</div>
+
+		</form>
+	</div>
+
+	<div class="row show-hide-message" ng-show="post.message">
+		<div>
+			<div class="alert alert-info">
+				{{ post.message }}
+			</div>
+		</div>
+	</div>
+
+</div>

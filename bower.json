@@ -1,0 +1,23 @@
+{
+  "name": "lucid",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jon Roby <jonathan.roby1@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "angular-animate": "~1.4.8"
+  }
+}

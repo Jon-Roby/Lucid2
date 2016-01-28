@@ -1,0 +1,38 @@
+
+<div class="container-login">
+
+	<div class="header-login">LOGIN</div>
+
+	<!-- <form ng-submit="login.login()"> -->
+
+		<div>
+
+			<input type="text" value="name" ng-model="login.loginData.username">Username</input>
+
+		</div>
+
+		<div>
+
+			<input type="password" ng-model="login.loginData.password">Password</input>
+
+		</div>
+
+		<div ng-if="login.error">
+			{{ login.error }}
+		</div>
+
+		<!-- <button type="submit">
+			<span ng-if="!login.processing">login</span>
+			<span ng-if="login.processing"><span></span></span>
+		</button> -->
+
+		<button ng-click="login.login()">
+			<span ng-if="!login.processing">login</span>
+			<span ng-if="login.processing"><span></span></span>
+		</button>
+	</div>
+
+
+
+
+</div>

@@ -1,0 +1,22 @@
+.lists {
+    padding-bottom: 10px;
+}
+.lists a {
+  text-decoration: none;
+  font-family: "Archer SSm A", "Archer SSm B";
+	font-style: normal;
+  font-weight: 500;
+  color: $color-dark-gray;
+  font-size: .9em;
+  list-style-type: circle;
+
+}
+
+.lists a:hover {
+  color: $color-primary;
+}
+
+// .lists a:selected {
+//   text-decoration: none;
+//   color: $color-dark-gray;
+// }

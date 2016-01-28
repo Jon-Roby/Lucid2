@@ -1,0 +1,12 @@
+<div class="lists">
+  <div class="icons-title">author</div>
+  {{ postAuthor.post.userData.username }}
+  {{ postAuthor.post.userData.upvotes }}
+  <div ng-repeat="n in postAuthor.post.userData.posts track by $index" >
+    <div ng-repeat="(key, value) in n">
+      <div><a href="/posts/{{value}}">{{ key }}</a></div>
+    </div>
+  </div>
+
+  <button ng-click="postAuthor.subscribeToAuthor()">Subscribe</button>
+</div>

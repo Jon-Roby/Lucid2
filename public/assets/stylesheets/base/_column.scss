@@ -1,0 +1,17 @@
+%column-container {
+  color: $color-dark-gray;
+  padding: 0px $base-line-height;
+
+
+
+   // 1.13em;
+}
+
+%column-header {
+  line-height: $base-line-height * 2;
+  font-size: $base-font-size;
+  border-bottom: 1px solid  $color-light-gray; //$color-light-gray
+  font-family: "Archer SSm A", "Archer SSm B";
+  font-style: italic;
+  font-weight: 500;
+}

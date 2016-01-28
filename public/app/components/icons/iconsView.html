@@ -1,0 +1,28 @@
+<div id="icons-container">
+  <div id="icons-header"><svg class="lnr lnr-diamond"><use xlink:href="#lnr-diamond"></use></svg> icons</div>
+
+  <div id="icons-icon" ng-repeat="icon in icons.icons">
+
+    
+      <div ng-mouseover="icons.showPopover()" ng-mouseleave="icons.hidePopover()"><div id="icon-photo"></div></div>
+      <div id="icons-link"><a  href="/users/{{icon._id}}">{{ icon.username }}</a></div>
+      
+      <div class="popover" ng-show="icons.popoverIsVisible">
+        <div ng-repeat="iconArray in icon.posts | limitTo: 3"> <!-- Also icon.posts.slice(0,2) -->
+          <div ng-repeat="(key, value) in iconArray">
+            <div class="lists"><a href="/posts/{{value}}">{{ key }}</a></div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+  <!-- <div ng-mouseover="icons.showPopover()" ng-mouseleave="icons.hidePopover()">
+    more info
+  </div>
+  <div class="popover" ng-show="icons.popoverIsVisible">Popover Content</div> -->
+
+
+
+

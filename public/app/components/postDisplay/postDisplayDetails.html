@@ -1,0 +1,11 @@
+<div>
+  <div class="icons-title">post options</div>
+  <button ng-click="postDisplay.upvotePost()">LIKE ME</button>
+  <div class="">{{ postDisplay.post.likes.length }}</div>
+  <button ng-click="postDisplay.bookmark()">Bookmark this</button>
+  <time am-time-ago="postDisplay.createdAt"></time>
+  <div>
+		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" ng-href="/posts/{{ postDisplay.post._id }}/edit">Edit</a>
+		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" href="#" ng-click="post.deleteTut(postDisplay.post._id)">Delete</a>
+	</div>
+</div>

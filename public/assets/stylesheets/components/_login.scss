@@ -1,0 +1,55 @@
+.container-login {
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  border: 1px solid gray;
+  width: 380px;
+  margin: 4em auto;
+  padding: 2em 2em 2em 2em;
+  border: 1px solid #ebebeb;
+}
+
+.header-login {
+	font-family: "Archer SSm A", "Archer SSm B";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.8em;
+	color: $color-primary;
+	align-self: center;
+}
+
+input {
+	font-size: 1em;
+	padding: 10px 10px 10px 5px;
+	-webkit-appearance: none;
+	display: block;
+	background: white;
+	color: #bdc3c7;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #ebebeb;
+
+}
+
+input:focus { outline: none; }
+
+button {
+  margin-top: 30px;
+	border: none;
+	background-color: $color-primary;
+	color: white;
+	font-weight: 500;
+}
+
+.alert {
+	background-color: #EF4836;
+	color: white;
+	border: 1px solid #EF4836;
+	padding: 2px;
+}
+
+// .container-login { box-sizing:border-box; }

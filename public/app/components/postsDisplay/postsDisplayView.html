@@ -1,0 +1,48 @@
+<div class="postsDisplay-container">
+	<!-- <button ng-click="postsDisplay.setSelected('lucky')">setSelected{{postsDisplay.selected}}</button>
+	<button ng-click="postsDisplay.getSelected()">getSelected</button>{{postsDisplay.selected}} -->
+	<div class="postsDisplay-header"><svg class="lnr lnr-file-empty"><use xlink:href="#lnr-file-empty"></use></svg> posts</div>
+	<div ng-repeat="post in postsDisplay.posts">
+		<div class="postsDisplay-card">
+
+			<div class="postsDisplay-top">
+				<div class="postsDisplay-top-left">
+					<div class="picture"></div>
+					<div>
+						<div class="postsDisplay-author">{{ post.authorName }}</div>
+						<div><time am-time-ago="post.createdAt"></time></div>
+					</div>
+				</div>
+				<!-- <div><svg class="lnr lnr-clock"><use xlink:href="#lnr-clock"></use></svg>7 minute read</div> -->
+
+				<div class="postsDisplay-top-right"><svg class="lnr lnr-bookmark"><use xlink:href="#lnr-bookmark"></use></svg></div>
+			</div>
+
+			<div class="postsDisplay-title">
+				<div><a ng-href="/posts/{{ post._id }}">{{ post.title }}</a></div>
+			</div>
+
+			<div class="postsDisplay-body">{{ post.body }}</div>
+
+
+			<div class="postsDisplay-bottom">
+				<!-- <div>0 views <svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg></div>
+				<div>{{ post.upvotes_count }}likes <svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg></div>
+				<div>0 shares <svg class="lnr lnr-exit-up"><use xlink:href="#lnr-exit-up"></use></svg></div>
+				<div>0 responses <svg class="lnr lnr-bubble"><use xlink:href="#lnr-bubble"></use></svg></div>
+				<div>0 favorites <svg class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg></div> -->
+
+				<div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg></div>
+				<div><svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg> {{ post.upvotes_count }}</div>
+				<!-- <div><svg class="lnr lnr-exit-up"><use xlink:href="#lnr-exit-up"></use></svg></div> -->
+				<div><svg class="lnr lnr-bubble"><use xlink:href="#lnr-bubble"></use></svg></div>
+				<div><svg class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg></div>
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,340 @@
+
+// Navbar
+.list-display-row {
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  li {
+    float: left;
+    a {
+      display: block;
+    	text-align: center;
+    	text-decoration: none;
+    }
+  }
+}
+
+// Fix navbar to top and set colors
+#navbar {
+
+	// border-bottom: 1px solid $color-light-gray;
+
+	z-index: 1;
+	position: fixed;
+	width: 100%;
+	background-color: white;
+	// opacity: .97;
+
+	border-top: 2px solid $color-primary;
+	border-bottom: 1px solid #f2f2f2;
+
+
+
+	// @include type-setting(2);
+
+  #navbar-container {
+  	@extend %container;
+		height: $base-line-height * 3;
+
+  	align-items: center;
+  }
+}
+
+
+
+#navbar-container-left {
+	@extend %container-left;
+	align-items: center;
+	height: $base-line-height * 3;
+  // background-color: gray;
+}
+
+// Magic numbers. Make sure everything lines up
+#navbar-title {
+	@extend %container-inner-left;
+
+	// padding-top: 10px;
+	// padding-bottom: 10px;
+	// padding-right: 34px;
+
+	letter-spacing: 8px;
+
+  font-family: "Archer SSm A", "Archer SSm B";
+  font-style: normal;
+  font-weight: 700;
+  font-size: $base-font-size * 2.2;
+
+
+  .first {
+    color: $color-primary;
+
+		// color: #1c9ccd;
+  }
+  .second {
+    color: $color-secondary;
+		// color: #72d0f4;
+  }
+}
+
+// $options-width: 100px;
+
+// Remove magical values for padding and height.
+#navbar-options {
+	@extend %container-inner-right;
+	@extend %column-container;
+	display: flex;
+	flex-direction: column;
+	height: $base-line-height * 3;
+
+	// background-color: yellow;
+}
+
+
+
+#navbar-options-top {
+
+	height: $base-line-height;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 58px;
+	// width: $options-width * 3;
+  // background-color: purple;
+
+}
+
+#navbar-options-bottom {
+	height: 2px;
+	// max-width: $options-width * 3;
+
+}
+
+// Width for other sliders is included in the navbar/index.html
+#slider {
+	height: 2px;
+	// width: 72px;
+	background-color: $color-primary;
+
+
+}
+
+
+
+
+$navbar-options-trending-width: 71.9063px;
+$navbar-options-popular-width: 65.0156px;
+$navbar-options-new-width: 35.2344px;
+$navbar-options-space-filler: 30px;
+
+// Write function that takes in a padding and then each of the options
+// and outputs the answer
+
+// @function get-margin-left($option, $another-number){
+//   @return $some-number + $another-number;
+// }
+
+.navbar-options-left {
+	margin-left: 0px;
+	width: $navbar-options-trending-width;
+}
+
+.navbar-options-middle {
+	margin-left: $navbar-options-space-filler + $navbar-options-trending-width; //
+	width: $navbar-options-popular-width;
+}
+
+.navbar-options-right {
+	margin-left: ($navbar-options-space-filler * 2) + $navbar-options-trending-width + $navbar-options-popular-width; //167px
+	width: $navbar-options-new-width;
+}
+
+.navbar-options-none {
+	margin-left: 0px; //167px
+	width: 0px;
+}
+
+
+
+.navbar-options-test-width {
+	height: 58px;
+	background-color: red;
+}
+
+// .trending-slider {
+//   margin-left: 0px;
+//   transition: .5s ease-in-out;
+// }
+//
+// .recent-slider {
+//   margin-left: 200px;
+//   transition: .5s ease-in-out;
+// }
+//
+// .popular-slider {
+//   margin-left: 400px;
+//   transition: .5s ease-in-out;
+// }
+
+.navbar-options-space-filler {
+	width: $base-line-height * 1.5
+}
+// .navbar-options-deselected {
+// 	border-bottom: none;
+//
+// 	transition: border-bottom 1s;
+// 	// transform: scaleX(1.2);
+//
+// }
+//
+// .navbar-options-selected {
+// 	border-bottom: 2px solid $color-primary;
+// 	border-top: 2px solid transparent;
+//
+// 	// transition: border-bottom 1s;
+// 	// transform: scaleX(1.2);
+// 	// transition: transform;
+// 	// transform: translate(30px, 0px);
+//
+// }
+
+
+
+#trending {
+	// margin-right: 20px;
+}
+
+.navbar-right {
+	@extend %container-right;
+}
+
+// .button {
+//   @extend %button;
+// }
+
+// #button-write {
+// 	margin-right: 28px;
+// 	background-color: white;
+// 	color: #87D37C;
+// 	border: 1px solid #87D37C;
+//
+// 	// border-bottom: 2px solid #fd4f56;
+//
+//
+// }
+
+// #button-log {
+//
+// 	background-color: white ;
+// 	color: $color-primary;
+// 	border: 1px solid $color-primary;
+// }
+
+
+
+// .navbar-tab {
+// 	background-color: #fafafa;
+// 	border-bottom: 1px solid #e9ece5 ; /* #ecf0f1 */
+// }
+//
+// .container .navbar-options li {
+//
+// 	padding-top: 10px;
+// 	padding-bottom: 10px;
+//
+// 	width: 90px;
+// }
+
+// .navbar-options li {
+// 	padding-top: 18px;
+// 	padding-bottom: 18px;
+//
+// 	width: 85px;
+// }
+
+// .navbar-options li {
+//   position: relative;
+//   color: #ecf0f1;
+//   text-decoration: none;
+// }
+//
+// .navbar-options li:hover {
+//   color: #ecf0f1;
+// }
+//
+// .navbar-options li:before {
+//   content: "";
+// 	position: absolute;
+//   width: 100%;
+//   height: 2px;
+//   bottom: -2px;
+//   left: 0;
+//   background-color: #ecf0f1;
+//   visibility: hidden;
+//   -webkit-transform: scaleX(0);
+//   transform: scaleX(0);
+//   -webkit-transition: all 0.3s ease-in-out 0s;
+//   transition: all 0.3s ease-in-out 0s;
+// }
+//
+// .navbar-options li:hover:before {
+//   visibility: visible;
+//   -webkit-transform: scaleX(1);
+//   transform: scaleX(1);
+// }
+
+
+
+
+
+
+
+// .active {
+// 	border-bottom: 2px solid #2ecc71;
+// 	font-family: 'Montserrat';
+// }
+//
+// .container {
+// 	max-width: 1000px;
+//
+// 	margin-left: auto;
+// 	margin-right: auto;
+// }
+
+
+
+
+
+// /* These do the underline */
+// .container .navbar-options li {
+// 	position: relative;
+// 	color: #ecf0f1;
+// 	text-decoration: none;
+// }
+//
+// .container .navbar-options li:hover {
+// 	color: #ecf0f1;
+// }
+//
+// .container .navbar-options li:before {
+// 	content: "";
+// 	position: absolute;
+// 	width: 100%;
+// 	height: 2px;
+// 	bottom: -2px;
+// 	left: 0;
+// 	background-color: #ecf0f1;
+// 	visibility: hidden;
+// 	-webkit-transform: scaleX(0);
+// 	transform: scaleX(0);
+// 	-webkit-transition: all 0.3s ease-in-out 0s;
+// 	transition: all 0.3s ease-in-out 0s;
+// }
+//
+// .container .navbar-options li:hover:before {
+// 	visibility: visible;
+// 	-webkit-transform: scaleX(1);
+// 	transform: scaleX(1);
+// }
