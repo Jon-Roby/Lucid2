@@ -1,25 +1,30 @@
 
 
-<div class="container-write">
-	<button class="button-write" ng-click="post.savePost()"><svg class="lnr lnr-file-add"><use xlink:href="#lnr-file-add"></use></svg> Publish</button>
-	<div class="container-write-2">
+<div class="postCreate-container">
 
-
-
-		<div class="form-input-title">
-			<input type="text" placeholder="Title" ng-model="post.postData.title">
+	<div class="postCreate-container-left">
+		<div class="postCreate-container-inner-left">
+			<button class="button-write" ng-click="post.savePost()"><svg class="lnr lnr-file-add"><use xlink:href="#lnr-file-add"></use></svg> Publish</button>
 		</div>
 
-		<div class="form-input-body">
-			<textarea class="input-textarea" placeholder="Lesson" ng-model="post.postData.body"></textarea>
-		</div>
+		<div class="postCreate-container-inner-right">
 
-		<div class="row show-hide-message" ng-show="post.message">
-			<div>
-				<div class="alert alert-info">
-					{{ post.message }}
+			<div class="form-input-title">
+				<input type="text" placeholder="Title" ng-model="post.postData.title">
+			</div>
+
+			<div class="form-input-body">
+				<textarea class="input-textarea" placeholder="Lesson" ng-model="post.postData.body"></textarea>
+			</div>
+
+			<div class="row show-hide-message" ng-show="post.message">
+				<div>
+					<div class="alert alert-info">
+						{{ post.message }}
+					</div>
 				</div>
 			</div>
+
 		</div>
 
 	</div>
