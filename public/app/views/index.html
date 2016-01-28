@@ -165,9 +165,9 @@
           <ul class="list-display-row">
             <!-- <li><svg class="lnr lnr-alarm"><use xlink:href="#lnr-alarm"></use></svg></li>
             <li><svg class="lnr lnr-magnifier"><use xlink:href="#lnr-magnifier"></use></svg></li> -->
-            <li class="write"><svg class="lnr lnr-pencil"><use xlink:href="#lnr-pencil"></use></svg><a ui-sref="postCreate"></a></li>
+            <li class="write"><a ui-sref="postCreate"><svg class="lnr lnr-pencil"><use xlink:href="#lnr-pencil"></use></svg></a></li>
             <li class="nav-profile"><a ng-if="!main.loggedIn" class="button" ng-click="main.doLogin()" class="button">Sign In</a></li>
-            <li><a ng-if="main.loggedIn" class="button" ng-click="main.doLogout()" class="button">Sign Out</a></li>
+            <li class="nav-profile"><a ng-if="main.loggedIn" class="button" ng-click="main.doLogout()" class="button">Sign Out</a></li>
             <!-- <li><svg class="lnr lnr-menu"><use xlink:href="#lnr-menu"></use></svg></li> -->
 
           </ul>

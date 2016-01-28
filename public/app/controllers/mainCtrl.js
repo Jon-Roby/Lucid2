@@ -6,6 +6,7 @@ angular.module('mainCtrl', [])
 
   	vm.loggedIn = Auth.isLoggedIn();
 
+
   	$rootScope.$on('$routeChangeStart', function() {
   		vm.loggedIn = Auth.isLoggedIn();
 
@@ -74,10 +75,10 @@ angular.module('mainCtrl', [])
   	    });
   	  };
 
-  	vm.login = function() {
+  	vm.doLogin = function() {
   		vm.processing = true;
   		vm.error = '';
-
+      console.log("hello");
       Auth.logout();
 
   		Auth.login(vm.loginData.username, vm.loginData.password)
@@ -85,18 +86,21 @@ angular.module('mainCtrl', [])
 
   				vm.processing = false;
   				if (data.success) {
-  					$location.path('/posts');
+  					$state.go('posts-trending');
   				} else {
   					vm.error = data.message;
           }
   			});
+
+
   	};
 
-  	vm.logout = function() {
+  	vm.doLogout = function() {
+      console.log("hello");
 
   		Auth.logout();
   		vm.user = '';
 
-  		// $state.go('posts');
+  		$state.go('posts-trending');
   	};
 });

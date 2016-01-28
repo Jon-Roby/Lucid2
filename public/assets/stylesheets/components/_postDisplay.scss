@@ -1,6 +1,15 @@
+.postsDisplayLayout-container {
+  background-color: white;
+}
+
+.post-header {
+  @extend %column-header;
+}
+
 .container-postDisplay {
   width: 92%;
   text-align: justify;
+  background-color: white;
 
 }
 

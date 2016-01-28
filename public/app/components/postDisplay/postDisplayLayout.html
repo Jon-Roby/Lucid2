@@ -1,13 +1,29 @@
-<div class="container">
+<!-- <div class="postsDisplay-container">
 
-  <div class="container-left">
-    <div class="container-inner-left">
-      <div ui-view="postDetails" class="postsDisplay-left"></div>
-      <div ui-view="postAuthor" class="postsDisplay-left"></div>
+  <div class="postsDisplay-container-left">
+    <div class="postsDisplay-container-inner-left">
+      <div ui-view="postDetails" class="postsDisplay-container-inner-left"></div>
+      <div ui-view="postAuthor" class="postsDisplay-container-inner-right"></div>
     </div>
-    <div ui-view="postDisplay" class="postsDisplay-center"></div>
+    <div ui-view="menu" class="postsDisplay-container-right"></div>
+
   </div>
 
-  <div ui-view="menu" class="postsDisplay-container-right"></div>
+
+
+</div> -->
+
+<div class="postsDisplayLayout-container">
+
+  <div class="postsDisplayLayout-container-left">
+    <div class="postsDisplayLayout-container-inner-left">
+      <div ui-view="postDetails" ></div>
+      <div ui-view="postAuthor" ></div>
+
+    </div>
+    <div class="postsDisplayLayout-container-inner-right" ui-view="postDisplay"></div>
+  </div>
+
+  <div ui-view="menu" class="postsDisplayLayout-container-right"></div>
 
 </div>

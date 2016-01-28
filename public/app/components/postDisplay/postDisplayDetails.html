@@ -1,8 +1,8 @@
-<div>
-  <div class="icons-title">post options</div>
-  <button ng-click="postDisplay.upvotePost()">LIKE ME</button>
+<div id="icons-container">
+  <div id="icons-header">post options</div>
+  <button ng-click="postDisplay.upvotePost()">Like</button>
   <div class="">{{ postDisplay.post.likes.length }}</div>
-  <button ng-click="postDisplay.bookmark()">Bookmark this</button>
+  <button ng-click="postDisplay.bookmark()">Bookmark</button>
   <time am-time-ago="postDisplay.createdAt"></time>
   <div>
 		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" ng-href="/posts/{{ postDisplay.post._id }}/edit">Edit</a>
