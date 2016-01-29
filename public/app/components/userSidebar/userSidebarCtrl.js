@@ -1,6 +1,6 @@
-angular.module('userSidebarCtrl', ['userSidebarService'])
+angular.module('userSidebarCtrl', ['userSidebarService', 'sharedDetailsService'])
 
-	.controller('userSidebarController', function(UserSidebar, Auth) {
+	.controller('userSidebarController', function(UserSidebar, Auth, sharedDetails) {
 
 		var vm = this;
 		vm.processing = true;
@@ -9,7 +9,6 @@ angular.module('userSidebarCtrl', ['userSidebarService'])
 			.then(function(data) {
 				UserSidebar.getUserId(data.data._id)
 					.success(function(data) {
-						console.log(data);
 						vm.userData = data;
 					});
 			});

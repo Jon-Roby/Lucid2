@@ -1,6 +1,6 @@
-angular.module('postAuthorCtrl', ['postAuthorService'])
+angular.module('postAuthorCtrl', ['postAuthorService', 'sharedDetailsService'])
 
-	.controller('postAuthorController', function(PostAuthor, Auth, $stateParams) {
+	.controller('postAuthorController', function(PostAuthor, Auth, $stateParams, sharedDetails) {
 
 		var vm = this;
 		vm.processing = true;

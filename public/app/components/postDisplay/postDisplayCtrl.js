@@ -6,33 +6,51 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 
 
 
-    Auth.getUser()
-      .then(function(data) {
-        PostDisplay.getUserId(data.data._id)
-          .success(function(data) {
-            vm.userData = data;
-          });
-      });
+		// PostIds and AuthorIds are stored as an object key and object value respectively
+		// They are then stored in an array
+		// To quickly pull these a couple of functions are created
+		var getObjectKey = function(object) {
+			for (var key in object) {
+				return key;
+			}
+		}
+
+		var arrayIncludesValue = function(array, value) {
+			for (var i = 0; i < array.length; i++) {
+				if (getObjectKey(array[i]) === value) {
+					return true;
+				}
+			}
+			return false;
+		}
 
 		PostDisplay.get($stateParams.post_id)
 			.success(function(data) {
-				vm.post = data;
-
-
-        // // Is this still necessary? This is stored with the post?
-        // // Make sure to make postAuthor clickable to go stright to profile
-				// Post.getUserId(vm.post.authorId)
-				// 	.success(function(data) {
-				//
-				// 		vm.post.userData = data;
-				//
-				// 	});
-
-
+				vm.postDetails = data;
 			});
 
-		vm.deletePost = function(id) {
+		// get the viewer (viewing user)
+    Auth.getUser()
+      .then(function(viewer) {
 
+				// gets the viewer's data
+				// This is necessary to determine like/upvote, favorite, and bookmark
+				PostDisplay.getUserId(viewer.data._id)
+          .success(function(viewerObject) {
+            vm.viewerDetails = viewerObject;
+
+						vm.likes_count = vm.postDetails.upvotes.length;
+						vm.viewerLiked = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
+
+						var post_id = vm.postDetails._id;
+						vm.viewerBookmarked = arrayIncludesValue(vm.viewerDetails.bookmarks, post_id);
+						vm.viewerFavorited = arrayIncludesValue(vm.viewerDetails.favorites, post_id);
+          });
+      });
+
+		// REWORK THIS NONSENSE
+		vm.deletePost = function(id) {
+			// vm.viewerDetails ....     vm.postDetails.authorId
 			if (vm.userData._id === vm.post.authorId) {
 				PostDisplay.delete(id)
 					.success(function(data) {
@@ -47,61 +65,61 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 		};
 
 		vm.upvotePost = function() {
-			console.log(vm.post._id);
-			PostDisplay.upvotePost(vm.post._id)
+			PostDisplay.upvotePost(vm.postDetails._id)
 				.success(function(data) {
+					vm.postDetails = data.post;
 
-					// THIS SEEMS TO BE BAD
-					PostDisplay.get($stateParams.post_id)
-						.success(function(data) {
-							vm.post = data;
-
-							// Post.getUserId(vm.post.authorId)
-							// 	.success(function(data) {
-							//
-							// 		vm.post.userData = data;
-							// 	});
-
-						});
+					vm.likes_count = vm.postDetails.upvotes.length;
+					vm.viewerLiked = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
 				});
-
-
 		};
+
+		vm.favoritePost = function() {
+			PostDisplay.favoritePost(vm.viewerDetails, vm.postDetails)
+				.then(function(data) {
+					console.log(data);
+				})
+		}
+
+		// vm.favoritePost = function() {
+		// 	PostDisplay.favoritePost(vm.viewerDetails._id, vm.postDetails._id)
+		// 		.success(function(data) {
+		// 			// return a data.post
+		// 			// vm.postDetails = data[0];
+		//
+		// 			// return a data.viewer
+		// 			vm.viewerDetails = data[0];
+		//
+		// 			// return a data.author!
+		// 			console.log(data);
+		// 			vm.favorites_count = vm.postDetails.favorites.length;
+		// 			vm.viewerFavorited = arrayIncludesValue(vm.viewerDetails.favorites, vm.postDetails._id);
+		// 		});
+		// };
 
 		vm.bookmark = function() {
-			// console.log(vm.userData._id);
-			// console.log(vm.post._id);
+			PostDisplay.bookmark(vm.viewerDetails._id, vm.postDetails)
+				.success(function(viewerObject) {
 
-
-			PostDisplay.bookmark(vm.userData._id, vm.post)
-				.success(function(data) {
-
-					Auth.getUser()
-						.then(function(data) {
-							// grab updated user data
-							PostDisplay.getUserId(data.data._id)
-								.success(function(data) {
-
-									vm.userData = data;
-
-								});
-						});
-				});
-
-		};
-
-		vm.subscribeToAuthor = function() {
-
-			PostDisplay.subscribeToAuthor(vm.userData, vm.post)
-				.success(function(data) {
-					Auth.getUser()
-						.then(function(data) {
-							PostDisplay.getUserId(data.data._id)
-								.success(function(data) {
-									vm.userData = data;
-								});
-						});
+					// Check if the viewer's bookmarks include the post_id
+					// Set the result to vm.viewerBookmarked
+					vm.viewerDetails = viewerObject.user;
+					vm.viewerBookmarked = arrayIncludesValue(vm.viewerDetails.bookmarks, vm.postDetails._id);
 				});
 		};
+
+		// vm.subscribeToAuthor = function() {
+		//
+		// 	PostDisplay.subscribeToAuthor(vm.userData, vm.post)
+		// 		.success(function(data) {
+		// 			Auth.getUser()
+		// 				.then(function(data) {
+		// 					PostDisplay.getUserId(data.data._id)
+		// 						.success(function(data) {
+		// 							vm.userData = data;
+		// 						});
+		// 				});
+		// 		});
+		// };
 
 	});

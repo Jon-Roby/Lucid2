@@ -16,6 +16,10 @@ angular.module('postDisplayService', [])
 		return $http.put('/api/posts/' + id + '/upvote');
 	};
 
+	postFactory.favoritePost = function(viewerObject, postObject) {
+		return $http.put('/api/users/' + viewerObject._id + '/favorite', postObject);
+	};
+
 	postFactory.bookmark = function(userId, postData) {
 		return $http.put('/api/users/' + userId + '/bookmark', postData);
 	};

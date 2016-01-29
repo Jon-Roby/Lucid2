@@ -8,8 +8,17 @@ var PostSchema   = new Schema({
 	title: String,
 	body: String,
 
+	views: {type: Number, default: 0},
+
 	upvotes: [],
-	upvotes_count: {type: Number, default: 0},
+
+
+	favorites: [],
+
+	bookmarks: [],
+
+	// comments: [],
+	// comments_count: {type: Number, default: 0},
 
 	createdAt: { type: Date, default: Date.now }
 });

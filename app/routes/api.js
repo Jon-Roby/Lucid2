@@ -11,6 +11,22 @@ if (process.env.NODE_ENV == undefined) {
 	var secret = process.env.SECRET;
 }
 
+var getObjectKey = function(object) {
+	for (var key in object) {
+		return key;
+	}
+}
+
+var arrayIncludesValue = function(array, value) {
+	for (var i = 0; i < array.length; i++) {
+		if (getObjectKey(array[i]) === value) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
 module.exports = function(app, express) {
 
 	var apiRouter = express.Router();
@@ -208,65 +224,70 @@ module.exports = function(app, express) {
 			});
 		});
 
-		apiRouter.route('/users/:user_id/profile')
-			.get(function(req, res) {
-				User.findById(req.params.user_id, function(err, user) {
-					res.json(user);
-				});
-			})
-			.put(function(req, res) {
-
-				// cloudinary.config({
-  			// 	cloud_name: 'sample',
-  			// 	api_key: '874837483274837',
-  			// 	api_secret: 'a676b67565c6767a6767d6767f676fe1'
-				// });
-
-				console.log(req.decoded);
-				console.log(req.body);
-				console.log(req.body.photo);
-				console.log(req.body.photo.photo);
-
-				// cloudinary.uploader.upload(req.body.photo, function(result) {
-  			// 	console.log(result)
-				// });
-
+	apiRouter.route('/users/:user_id/profile')
+		.get(function(req, res) {
+			User.findById(req.params.user_id, function(err, user) {
+				res.json(user);
 			});
+		})
+		.put(function(req, res) {
 
+			// cloudinary.config({
+			// 	cloud_name: 'sample',
+			// 	api_key: '874837483274837',
+			// 	api_secret: 'a676b67565c6767a6767d6767f676fe1'
+			// });
 
+			console.log(req.decoded);
+			console.log(req.body);
+			console.log(req.body.photo);
+			console.log(req.body.photo.photo);
+
+			// cloudinary.uploader.upload(req.body.photo, function(result) {
+			// 	console.log(result)
+			// });
+
+		});
+
+	// abstract this checking of the bookmark into another function
 	apiRouter.route('/users/:user_id/bookmark')
 		.put(function(req, res) {
 			User.findById(req.params.user_id, function(err, user) {
+
 				var bookmarkObject = {};
 				bookmarkObject[req.body._id] = req.body.title;
-				var addBookmark = true;
-				var index = 0;
-				for (var i = 0; i < user.bookmarks.length; i++) {
-					for (var key in user.bookmarks[i]) {
-						if (key === req.body._id) {
-							addBookmark = false;
-							index = i;
-						}
-					}
-				}
 
-				if (addBookmark === true) {
+				if (!!arrayIncludesValue(user.bookmarks, req.body._id)) {
+					user.bookmarks.splice(arrayIncludesValue, 1);
+				} else {
 					user.bookmarks.push(bookmarkObject);
-				} else if (user.bookmarks.length === 1) {
-					user.bookmarks = [];
-				} else if (user.bookmarks[user.bookmarks.length-1] === index) {
-					user.bookmarks[index].pop();
-			  } else {
-					// use .splice(index, 1)
-					var left = user.bookmarks.slice(0, index);
-					var right = user.bookmarks.slice(index+1, user.bookmarks.length);
-					user.bookmarks = left.concat(right);
 				}
 
 				user.save(function(err) {
-					res.json({ message: "Hello yo" });
+					if (err) throw err;
 				});
 
+				res.json({ message: "Bookmarked success", "user": user });
+			});
+		});
+
+	apiRouter.route('/users/:user_id/favorite')
+		.put(function(req, res) {
+			User.findById(req.params.user_id, function(err, user) {
+				var favoriteObject = {};
+				favoriteObject[req.body._id] = req.body.title;
+
+				if (!!arrayIncludesValue(user.favorites, req.body._id)) {
+					user.favorites.splice(arrayIncludesValue, 1);
+				} else {
+					user.favorites.push(favoriteObject);
+				}
+
+				user.save(function(err) {
+					if (err) throw err;
+				});
+
+				res.json({"user": user });
 			});
 		});
 
@@ -511,29 +532,25 @@ module.exports = function(app, express) {
 
 
 
-	// apiRouter.route('/posts/trending')
-	// 	// get the user with that id
-	// 	.get(function(req, res) {
-	// 		Post.findById(req.params.post_id, function(err, post) {
-	// 			if (err) res.send(err);
-	// 			// return that user
-	// 			res.json(post);
-	// 		});
-	//
-	// 		Post.find().sort({_id:1}).limit(4)
-	// 	});
-	//
-	// apiRouter.route('/posts/popular')
-	// 	// get the user with that id
-	// 	.get(function(req, res) {
-	// 		Post.findById(req.params.post_id, function(err, post) {
-	// 			if (err) res.send(err);
-	// 			// return that user
-	// 			res.json(post);
-	// 		});
-	// 	});
-	//
 
+	// apiRouter.route('/posts/:post_id/favorite')
+	// 	.put(function(req, res) {
+	// 		console.log(req.params.post_id)
+	// 		Post.findById(req.params.post_id, function(err, post) {
+	// 			var result = post.favorites.indexOf(req.body._id);
+	// 			if ( result !== -1) {
+	// 				post.favorites.push(req.body._id);
+	// 			} else {
+	// 				post.favorites.splice(result, 1);
+	// 			}
+	//
+	// 			post.save(function(err) {
+	// 				if (err) throw err;
+	// 			});
+	//
+	// 			res.json({"post": post });
+	// 		});
+	// 	});
 
 
 
@@ -581,7 +598,7 @@ module.exports = function(app, express) {
 					if (err) res.send(err);
 				});
 
-				res.json({ message: action });
+				res.json({ message: action, "post": post });
 
 			});
 		});

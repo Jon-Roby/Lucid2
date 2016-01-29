@@ -1,13 +1,19 @@
 <div id="postDisplay-container">
-  <div id="postDisplay-header">post options</div>
+  <div id="postDisplay-header">post detals</div>
   <!-- <button ng-click="postDisplay.upvotePost()">Like</button> -->
-  <div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg></div>
-  <div ng-click="postDisplay.upvotePost()"><svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg> {{ postDisplay.post.upvotes_count }}</div>
+
+  <div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg> 0</div>
+
+  <div ng-click="postDisplay.upvotePost()"><svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg> {{ postDisplay.likes }} {{postDisplay.viewerLiked}}</div>
   <!-- <div><svg class="lnr lnr-exit-up"><use xlink:href="#lnr-exit-up"></use></svg></div> -->
+
   <div><svg class="lnr lnr-bubble"><use xlink:href="#lnr-bubble"></use></svg> 0</div>
-  <div><svg class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg> </div>
-  <div ng-click="postDisplay.bookmark()"><div ><svg class="lnr lnr-bookmark"><use xlink:href="#lnr-bookmark"></use></svg></div></div>
+
+  <div ng-click="postDisplay.favoritePost()"><svg class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg> {{postDisplay.postDetails.favorites_count}} {{postDisplay.viewerFavorited}}</div>
+
+  <div ng-click="postDisplay.bookmark()"><div ><svg class="lnr lnr-bookmark"><use xlink:href="#lnr-bookmark"></use></svg></div>{{postDisplay.viewerBookmarked}}</div>
   <time am-time-ago="postDisplay.createdAt"></time>
+
   <div>
 		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" ng-href="/posts/{{ postDisplay.post._id }}/edit">Edit</a>
 		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" href="#" ng-click="post.deleteTut(postDisplay.post._id)">Delete</a>

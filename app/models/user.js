@@ -7,11 +7,17 @@ var UserSchema   = new Schema({
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
 
+	// The user's posts that have been favorited and liked
   posts: {type: Array},
-  upvotes: {type: Number, default: 0},
+	posts_favorited: [],
+  // posts_favorited_count: {type: Number, default: 0},
+	posts_liked: {type: Array},
 
+
+	// The posts that the user has liked
 	bookmarks: {type: Array},
   favorites: {type: Array},
+	likes: {type: Array},
 
 	subscriptions: {type: Array},
 	subscribers: {type: Array},

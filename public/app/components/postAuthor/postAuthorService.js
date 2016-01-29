@@ -14,7 +14,8 @@ angular.module('postAuthorService', [])
 	};
 
   postAuthorFactory.subscribeToAuthor = function(userId, userData) {
-    return $http.put('/api/users/' + userId._id + '/subscribe', userData);
+    var action = $http.put('/api/users/' + userId._id + '/subscribe', userData);
+		return action;
   };
 
 	return postAuthorFactory;
