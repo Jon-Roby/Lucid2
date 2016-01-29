@@ -4,6 +4,8 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 
 		var vm = this;
 
+
+
     Auth.getUser()
       .then(function(data) {
         PostDisplay.getUserId(data.data._id)

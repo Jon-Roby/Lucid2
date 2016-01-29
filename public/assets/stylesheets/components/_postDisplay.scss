@@ -30,3 +30,31 @@
   font-family: 'Montserrat-Ultralight';
   line-height: $base-line-height * 1.1;
 }
+
+
+
+// postDisplayDetails
+
+#postDisplay-container {
+  @extend %column-container;
+  padding-bottom: $base-line-height;
+}
+
+#postDisplay-header {
+  @extend %column-header;
+
+}
+
+#postAuthor-container {
+  @extend %column-container;
+}
+
+#postAuthor-header {
+  @extend %column-header;
+}
+
+
+
+
+
+// postAuthor
