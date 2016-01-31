@@ -556,51 +556,31 @@ module.exports = function(app, express) {
 
 	apiRouter.route('/posts/:post_id/upvote')
 		.put(function(req, res) {
-			Post.findById(req.params.post_id, function(err, post) {
-				var action = '';
-				var index = post.upvotes.indexOf(req.decoded._id);
-				if (index === -1) {
-					post.upvotes.push(req.decoded._id);
-					post.upvotes_count += 1;
+			Post.findById(req.params.post_id)
+				.then(function(post) {
+					var userObject = {};
+					User.findById(post.authorId)
+						.then(function(user) {
+							var index = post.upvotes.indexOf(req.decoded._id);
+							if (index === -1) {
+								post.upvotes.push(req.decoded._id);
+								user.upvotes += 1;
+							} else {
+								post.upvotes.splice(index, 1);
+								user.upvotes -= 1;
+							}
+							user.save(function(err) {
+								if (err) res.send(err);
+							})
+							var userObject = user;
 
-					User.findById(post.authorId, function(err, user) {
-						// user.upvotes_count += 1;                                          ******* ADD UPVOTES PROPERTY FOR USERS*** TO FIND POPULAR USERS
-						user.save(function(err) {
+							post.save(function(err) {
+								if (err) res.send(err);
+							});
+
+							res.json({ "post": post, "author": userObject });
 						});
-					});
-
-					// case where there is only one item in array, which messes up slice
-				} else if (post.upvotes.length === 1 && post.upvotes[0] === req.decoded._id) {
-					post.upvotes = [];
-					post.upvotes_count = 0;
-
-					User.findById(post.authorId, function(err, user) {
-						// user.upvotes_count -= 1;                                         ******* ADD UPVOTES PROPERTY FOR USERS*** TO FIND POPULAR USERS
-						user.save(function(err) {
-						});
-					});
-
-				} else {
-					var left = post.upvotes.slice(0, index);
-					var right = post.upvotes.slice(index+1, post.upvotes.length);
-					post.upvotes = left + right;
-					post.upvotes_count -= 1;
-
-					User.findById(post.authorId, function(err, user) {
-						// user.upvotes_count -= 1;                                         ******* ADD UPVOTES PROPERTY FOR USERS*** TO FIND POPULAR USERS
-						user.save(function(err) {
-						});
-					});
-
-				};
-
-				post.save(function(err) {
-					if (err) res.send(err);
 				});
-
-				res.json({ message: action, "post": post });
-
-			});
 		});
 
 	apiRouter.get('/me', function(req, res) {

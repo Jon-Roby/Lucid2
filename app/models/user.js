@@ -11,13 +11,13 @@ var UserSchema   = new Schema({
   posts: {type: Array},
 	posts_favorited: [],
   // posts_favorited_count: {type: Number, default: 0},
-	posts_liked: {type: Array},
+	posts_upvoted: {type: Array},
 
 
 	// The posts that the user has liked
 	bookmarks: {type: Array},
   favorites: {type: Array},
-	likes: {type: Array},
+	upvotes: {type: Number, default: 0},
 
 	subscriptions: {type: Array},
 	subscribers: {type: Array},

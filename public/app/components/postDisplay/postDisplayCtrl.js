@@ -1,10 +1,8 @@
 angular.module('postDisplayCtrl', ['postDisplayService'])
 
-	.controller('postDisplayController', function($stateParams, PostDisplay, Auth) {
+	.controller('postDisplayController', function($stateParams, PostDisplay, Auth, $rootScope) {
 
 		var vm = this;
-
-
 
 		// PostIds and AuthorIds are stored as an object key and object value respectively
 		// They are then stored in an array
@@ -39,8 +37,8 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
           .success(function(viewerObject) {
             vm.viewerDetails = viewerObject;
 
-						vm.likes_count = vm.postDetails.upvotes.length;
-						vm.viewerLiked = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
+						vm.upvotes_count = vm.postDetails.upvotes.length;
+						vm.viewerUpvoted = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
 
 						var post_id = vm.postDetails._id;
 						vm.viewerBookmarked = arrayIncludesValue(vm.viewerDetails.bookmarks, post_id);
@@ -67,17 +65,19 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 		vm.upvotePost = function() {
 			PostDisplay.upvotePost(vm.postDetails._id)
 				.success(function(data) {
-					vm.postDetails = data.post;
+					$rootScope.$broadcast('someEvent', data.post.upvotes);
 
-					vm.likes_count = vm.postDetails.upvotes.length;
-					vm.viewerLiked = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
+					vm.postDetails = data.post;
+					vm.upvotes_count = vm.postDetails.upvotes.length;
+					vm.viewerUpvoted = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
 				});
 		};
 
 		vm.favoritePost = function() {
 			PostDisplay.favoritePost(vm.viewerDetails, vm.postDetails)
-				.then(function(data) {
-					console.log(data);
+				.then(function(object) {
+					vm.viewerDetails = object.data.user;
+					vm.viewerFavorited = arrayIncludesValue(vm.viewerDetails.favorites, vm.postDetails._id);
 				})
 		}
 

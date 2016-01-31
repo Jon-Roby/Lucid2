@@ -1,45 +1,49 @@
-angular.module('sharedDetailsService', [])
-  .factory('sharedDetails', function($rootScope) {
-    var sharedDetails = {};
-
-    sharedDetails.subscription = {};
-
-    sharedDetails.prepForBroadcast = function(information) {
-      this.subscription = information;
-      this.broadcastItem();
-    };
-
-    sharedDetails.broadcastItem = function() {
-      $rootScope.$broadcast('handleBroadcast');
-    };
-
-    return sharedDetails;
-  });
-
-
-// angular.module('postsOptionsService', [])
-//   .service('PostsOptions', function () {
+// 
+// // use this for tabs and mayb login/logout
+// angular.module('sharedDetailsService', [])
+//   .factory('sharedDetails', function() {
 //
+//     var viewer = {};
+//     var author = {};
+//     var post = {}
 //
+//     var sharedDetails = {
+//       getViewer: function() {
+//         return viewer;
+//       },
 //
-//     var postOptionsFactory = {};
+//       getAuthor: function() {
+//         return author;
+//       },
 //
-//     postOptionsFactory.trending = "trending";
-//     postOptionsFactory.recent = "recent";
-//     postOptionsFactory.popular = "popular";
+//       getPost: function() {
+//         return post;
+//       },
 //
-//     postOptionsFactory.selected = "trending";
+//       setViewer: function(update) {
+//         viewer = update;
+//       },
 //
-//     postOptionsFactory.getSelected = function () {
-//       return postOptionsFactory.selected;
-//       // return "Hello there";
-//     },
-//     postOptionsFactory.setSelected = function(value) {
-//       console.log("I made it here and received " + value);
-//       postOptionsFactory.selected = value;
-//       console.log(postOptionsFactory.selected);
+//       setAuthor: function(update) {
+//         author = update;
+//       },
+//
+//       setPost: function(update) {
+//         post = update;
+//       }
 //     };
 //
-//     return postOptionsFactory;
+//     return sharedDetails;
 //
 //   });
+
+
+  // var postFactory = {};
+  //
+  // postFactory.get = function(id) {
+  //   return $http.get('/api/posts/' + id);
+  // };
+  //
+  // postFactory.getUserId = function(id) {
+  //   return $http.get('/api/users/' + id);
+  // };

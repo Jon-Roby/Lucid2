@@ -1,6 +1,6 @@
-angular.module('userSidebarCtrl', ['userSidebarService', 'sharedDetailsService'])
+angular.module('userSidebarCtrl', ['userSidebarService'])
 
-	.controller('userSidebarController', function(UserSidebar, Auth, sharedDetails) {
+	.controller('userSidebarController', function(UserSidebar, Auth) {
 
 		var vm = this;
 		vm.processing = true;
