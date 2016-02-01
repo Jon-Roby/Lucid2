@@ -11,21 +11,14 @@ if (process.env.NODE_ENV == undefined) {
 	var secret = process.env.SECRET;
 }
 
-var getObjectKey = function(object) {
-	for (var key in object) {
-		return key;
-	}
-}
-
-var arrayIncludesValue = function(array, value) {
+var arrayHasValue = function(array, value) {
 	for (var i = 0; i < array.length; i++) {
-		if (getObjectKey(array[i]) === value) {
-			return true;
+		if (array[i].id === value) {
+			return i;
 		}
 	}
 	return false;
-}
-
+};
 
 module.exports = function(app, express) {
 
@@ -255,12 +248,15 @@ module.exports = function(app, express) {
 			User.findById(req.params.user_id, function(err, user) {
 
 				var bookmarkObject = {};
-				bookmarkObject[req.body._id] = req.body.title;
+				bookmarkObject.id = req.body._id;
+				bookmarkObject.title = req.body.title;
 
-				if (!!arrayIncludesValue(user.bookmarks, req.body._id)) {
-					user.bookmarks.splice(arrayIncludesValue, 1);
-				} else {
+				var result = arrayHasValue(user.bookmarks, bookmarkObject.id);
+
+				if (result === false) {
 					user.bookmarks.push(bookmarkObject);
+				} else {
+					user.bookmarks.splice(result, 1);
 				}
 
 				user.save(function(err) {
@@ -275,12 +271,15 @@ module.exports = function(app, express) {
 		.put(function(req, res) {
 			User.findById(req.params.user_id, function(err, user) {
 				var favoriteObject = {};
-				favoriteObject[req.body._id] = req.body.title;
+				favoriteObject.id = req.body._id;
+				favoriteObject.title = req.body.title;
 
-				if (!!arrayIncludesValue(user.favorites, req.body._id)) {
-					user.favorites.splice(arrayIncludesValue, 1);
-				} else {
+				var result = arrayHasValue(user.favorites, favoriteObject.id)
+
+				if (result === false) {
 					user.favorites.push(favoriteObject);
+				} else {
+					user.favorites.splice(result, 1);
 				}
 
 				user.save(function(err) {
@@ -291,100 +290,75 @@ module.exports = function(app, express) {
 			});
 		});
 
+		apiRouter.route('/posts/:post_id/upvote')
+			.put(function(req, res) {
+				Post.findById(req.params.post_id)
+					.then(function(post) {
+						var userObject = {};
+						User.findById(post.authorId)
+							.then(function(user) {
+								var index = post.upvotes.indexOf(req.decoded._id);
+								if (index === -1) {
+									post.upvotes.push(req.decoded._id);
+									user.upvotes += 1;
+								} else {
+									post.upvotes.splice(index, 1);
+									user.upvotes -= 1;
+								}
+								user.save(function(err) {
+									if (err) res.send(err);
+								})
+								var userObject = user;
+
+								post.save(function(err) {
+									if (err) res.send(err);
+								});
+
+								res.json({ "post": post, "author": userObject });
+							});
+					});
+			});
+
 	apiRouter.route('/users/:user_id/subscribe')
 		.put(function(req, res) {
-			var subscribeeId = req.body.authorId;
-			var subscribeeName = req.body.authorName;
+
 			var subscribee = {};
-			subscribee[subscribeeId] = subscribeeName;
+			subscribee.id = req.body.authorDetails._id;
+			subscribee.name = req.body.authorDetails.username;
 
-			if (req.body.authorId !== req.params.user_id) {
+			var subscriber = {};
+			subscriber.id = req.body.viewerDetails._id;
+			subscriber.name = req.body.viewerDetails.username;
 
-				User.findById(req.params.user_id, function(err, user) {
-
-					var subscriberId = user._id.toString();
-					var subscriberName = user.name;
-
-					var subscriber = {};
-					subscriber[subscriberId] = subscriberName;
-
-					var addSubscription = true;
-					var index = -1;
-
-					for (var i = 0; i < user.subscriptions.length; i++) {
-						for (var key in user.subscriptions[i]) {
-
-							if (key === subscribeeId) {
-								addSubscription = false;
-								index = i;
-							}
-						}
-					}
-
-					if (addSubscription) {
-						user.subscriptions.push(subscribee);
-					} else {
-						var counter = -1;
-						var filter = user.subscriptions.filter(function(q) {
-							counter += 1;
-							return index !== counter;
-						});
-						user.subscriptions = filter;
-					}
-
-					user.save(function(err) {
-					});
-
-					User.findById(subscribeeId, function(err, user2) {
-
-						if (addSubscription) {
-							user2.subscribers.push(subscriber);
+			if (subscribee.id !== subscriber.id) {
+				User.findById(subscribee.id)
+					.then(function(user) {
+						var result = arrayHasValue(user.subscribers, subscriber.id);
+						if (result === false) {
+							user.subscribers.push(subscriber)
 						} else {
-							var filter = user2.subscribers.filter(function(j) {
-								for (var key in j) {
-									return key !== subscriberId;
-								}
-							});
-							user2.subscribers = filter;
+							user.subscribers.splice(result, 1);
 						}
-						user2.save(function(err) {
+						user.save(function(err) {
+							if (err) res.send(err);
 						});
-					});
-				});
+
+						User.findById(subscriber.id)
+							.then(function(user2) {
+								var result = arrayHasValue(user2.subscriptions, subscribee.id);
+								if (result === false) {
+									user2.subscriptions.push(subscribee)
+								} else {
+									user2.subscriptions.splice(result, 1)
+								}
+								user2.save(function(err) {
+									if (err) res.send(err);
+								});
+								res.json({authorObject: user, viewerObject: user2});
+							})
+					})
 			}
-			res.json({ message: "hello from subscribe"});
 		});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -451,7 +425,6 @@ module.exports = function(app, express) {
 				.sort({upvotes_count: -1})
 				.exec( function(err, posts) {
 					if (err) res.send(err);
-					console.log(posts);
 					// var items = posts.slice(0,3);
 					// console.log(items);
 					// res.json(items);
@@ -483,76 +456,41 @@ module.exports = function(app, express) {
 		.get(function(req, res) {
 			Post.findById(req.params.post_id, function(err, post) {
 				if (err) res.send(err);
+
+				post.views += 1;
+				post.save(function(err) {
+					if (err) throw err;
+				});
+
 				res.json(post);
+			})
+		})
+
+		.put(function(req, res) {
+			Post.findById(req.params.post_id, function(err, post) {
+				if (err) res.send(err);
+				// set the new post information if it exists in the request
+				if (req.body.title) post.title = req.body.title;
+				if (req.body.body) post.body = req.body.body;
+
+				post.save(function(err) {
+					if (err) res.send(err);
+					res.json({ message: 'Post updated!' });
+				});
+			});
+		})
+
+		.delete(function(req, res) {
+
+			// use request object to grab id ... if id is identical to author id on Post then it is allowed
+			Post.remove({
+				_id: req.params.post_id
+			}, function(err, post) {
+				if (err) res.send(err);
+
+				res.json({ message: 'Successfully deleted' });
 			});
 		});
-
-
-
-
-	// apiRouter.route('/posts/:post_id')
-	// 	// get the user with that id
-	// 	.get(function(req, res) {
-	// 		Post.findById(req.params.post_id, function(err, post) {
-	// 			if (err) res.send(err);
-	// 			// return that user
-	// 			res.json(post);
-	// 		});
-	// 	})
-	//
-	// 	// update the post with this id
-	// 	.put(function(req, res) {
-	// 		Post.findById(req.params.post_id, function(err, post) {
-	// 			if (err) res.send(err);
-	// 			// set the new post information if it exists in the request
-	// 			if (req.body.title) post.title = req.body.title;
-	// 			if (req.body.body) post.body = req.body.body;
-	//
-	// 			post.save(function(err) {
-	// 				if (err) res.send(err);
-	// 				res.json({ message: 'Post updated!' });
-	// 			});
-	// 		});
-	// 	})
-	//
-	// 	.delete(function(req, res) {
-	//
-	// 		// use request object to grab id ... if id is identical to author id on Post then it is allowed
-	// 		Post.remove({
-	// 			_id: req.params.post_id
-	// 		}, function(err, post) {
-	// 			if (err) res.send(err);
-	//
-	// 			res.json({ message: 'Successfully deleted' });
-	// 		});
-	// 	});
-
-
-
-
-
-
-
-	// apiRouter.route('/posts/:post_id/favorite')
-	// 	.put(function(req, res) {
-	// 		console.log(req.params.post_id)
-	// 		Post.findById(req.params.post_id, function(err, post) {
-	// 			var result = post.favorites.indexOf(req.body._id);
-	// 			if ( result !== -1) {
-	// 				post.favorites.push(req.body._id);
-	// 			} else {
-	// 				post.favorites.splice(result, 1);
-	// 			}
-	//
-	// 			post.save(function(err) {
-	// 				if (err) throw err;
-	// 			});
-	//
-	// 			res.json({"post": post });
-	// 		});
-	// 	});
-
-
 
 	apiRouter.route('/posts/:post_id/upvote')
 		.put(function(req, res) {

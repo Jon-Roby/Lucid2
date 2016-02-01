@@ -1,9 +1,9 @@
 <div id="postDisplay-container">
-  <div id="postDisplay-header">post detals</div>
+  <div id="postDisplay-header">post details</div>
 
   <!-- <button ng-click="postDisplay.upvotePost()">Like</button> -->
 
-  <div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg> 0</div>
+  <div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg> {{postDisplay.postDetails.views}}</div>
 
   <div ng-click="postDisplay.upvotePost()"><svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg> {{ postDisplay.upvotes }} {{postDisplay.viewerUpvoted }}</div>
   <!-- <div><svg class="lnr lnr-exit-up"><use xlink:href="#lnr-exit-up"></use></svg></div> -->
@@ -19,4 +19,19 @@
 		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" ng-href="/posts/{{ postDisplay.post._id }}/edit">Edit</a>
 		<a ng-show="postDisplay.userData._id === postDisplay.post.authorId" href="#" ng-click="post.deleteTut(postDisplay.post._id)">Delete</a>
 	</div>
+</div>
+
+
+
+<div id="postDisplay-container">
+  <div id="postDisplay-header">author</div>
+  {{ postDisplay.authorDetails.username }}
+  {{ postDisplay.authorDetails.upvotes }}
+  <div ng-repeat="n in postDisplay.authorDetails.posts track by $index" >
+    <div ng-repeat="(key, value) in n">
+      <div class="lists"><a href="/posts/{{value}}">{{ key }}</a></div>
+    </div>
+  </div>
+
+  <button ng-click="postDisplay.subscribeToAuthor()">Subscribe</button>
 </div>

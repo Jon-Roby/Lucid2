@@ -5,7 +5,7 @@ angular.module('postAuthorCtrl', ['postAuthorService'])
 		var vm = this;
 		vm.processing = true;
 
-		$rootScope.$on('someEvent', function(event, mass) { vm.post.userData.upvotes = mass; });
+		$rootScope.$on('alterAuthorUpvotes', function(event, alter) { vm.post.userData.upvotes = alter; });
 
 
 		Auth.getUser()
@@ -38,6 +38,7 @@ angular.module('postAuthorCtrl', ['postAuthorService'])
 							.then(function(data) {
 								PostAuthor.getUserId(data.data._id)
 									.success(function(data) {
+										$rootScope.$broadcast('updateSubscriptions', data.subscriptions);
 										vm.userData = data;
 									});
 							});

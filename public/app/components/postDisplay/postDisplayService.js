@@ -28,6 +28,10 @@ angular.module('postDisplayService', [])
 		return $http.delete('/api/posts/post/' + id);
 	};
 
+	postFactory.subscribeToAuthor = function(subscriptionDetails) {
+    return $http.put('/api/users/' + subscriptionDetails.authorDetails._id + '/subscribe', subscriptionDetails);
+  };
+
 	return postFactory;
 
 });

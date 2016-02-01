@@ -123,11 +123,11 @@ angular.module('app.routes', ['ui.router'])
             controller: "postDisplayController",
             controllerAs: "postDisplay"
           },
-          'postAuthor@post': {
-            templateUrl: "app/components/postAuthor/postAuthorView.html",
-            controller: "postAuthorController",
-            controllerAs: "postAuthor"
-          },
+          // 'postAuthor@post': {
+          //   templateUrl: "app/components/postAuthor/postAuthorView.html",
+          //   controller: "postAuthorController",
+          //   controllerAs: "postAuthor"
+          // },
           'menu@post': {
             templateUrl: 'app/components/userSidebar/userSidebarView.html',
             controller: 'userSidebarController',
