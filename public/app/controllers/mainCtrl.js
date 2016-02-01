@@ -5,31 +5,48 @@ angular.module('mainCtrl', [])
   	var vm = this;
 
   	vm.loggedIn = Auth.isLoggedIn();
-    console.log(vm.loggedIn);
 
-  	$rootScope.$on('$routeChangeStart', function() {
+  	$rootScope.$on('$stateChangeSuccess', function() {
   		vm.loggedIn = Auth.isLoggedIn();
 
   		Auth.getUser()
   			.then(function(data) {
   				vm.user = data.data;
   			});
+
+      switch($location.path()) {
+        case "/posts/trending":
+          vm.showSliderMargin = true;
+          break;
+        case "/posts/popular":
+          vm.showSliderMargin = true;
+          break;
+        case "/posts/new":
+          vm.showSliderMargin = true;
+          break;
+        default:
+          vm.showSliderMargin = false;
+          break;
+      }
     });
 
     vm.selected = "";
 
+    switch($location.path()) {
+      case "/posts/trending":
+        vm.sliderMargin = 'navbar-options-left';
+        break;
+      case "/posts/popular":
+        vm.sliderMargin = 'navbar-options-middle';
+        break;
+      case "/posts/new":
+        vm.sliderMargin = 'navbar-options-right';
+        break;
+      default:
+        vm.sliderMargin = 'navbar-options-none';
+        break;
+    }
 
-    // case switch statement
-
-		if ($location.path() === "/posts/trending") {
-			vm.sliderMargin = 'navbar-options-left';
-		} else if ($location.path() === "/posts/popular") {
-			vm.sliderMargin = 'navbar-options-middle';
-		} else if ($location.path() === "/posts/new") {
-			vm.sliderMargin = 'navbar-options-right';
-		} else {
-			vm.sliderMargin = 'navbar-options-none';
-		}
 
     // vm.sliderMargin = 'navbar-options-right';
 

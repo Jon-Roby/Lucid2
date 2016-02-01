@@ -108,6 +108,17 @@ stylesheet. */
 
 }
 
+.item a {
+	color: black;
+	text-decoration: none;
+}
+
+.active a {
+	transition: all 1s ease;
+	text-decoration: underline;
+	color: yellow;
+}
+
 // .popover {
 // 	position: absolute;
 // 	z-index: 100;
