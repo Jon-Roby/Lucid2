@@ -13,8 +13,8 @@
 		<!-- <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6030954/606888/css/fonts.css"> -->
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6030954/6894952/css/fonts.css" />
 
-    <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
 
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/evil-icons/1.7.8/evil-icons.min.css">
     <script src="https://cdn.jsdelivr.net/evil-icons/1.7.8/evil-icons.min.js"></script> -->
@@ -104,6 +104,23 @@
                 <div ng-click="main.switchPage('posts-trending'); myStyle={'margin-left': '0px', 'width': '72px', 'transition': '.5s ease-in-out'}">    <div>trending</div>  </div>   <span class="navbar-options-space-filler"></span>
                 <div ng-click="main.switchPage('posts-popular'); myStyle={'margin-left': '102px', 'width': '65px', 'transition': '.5s ease-in-out'}"> <div>popular</div>   </div>   <span class="navbar-options-space-filler"></span>
                 <div ng-click="main.switchPage('posts-new'); myStyle={'margin-left': '197px', 'width': '35px', 'transition': '.5s ease-in-out'}" > <div>new</div>       </div>   <span class="navbar-options-space-filler"></span>
+
+
+                <!-- <svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg> -->
+                <!-- <svg class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg> -->
+                <!-- <svg class="lnr lnr-bookmark"><use xlink:href="#lnr-bookmark"></use></svg> -->
+
+                <svg class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg>
+
+
+                <svg class="lnr lnr-heart"><use xlink:href="heart.svg#lnr-heart"></use></svg>
+
+                <div id="heart-svg">heart</div>
+
+
+                <svg><symbol id="lnr-heart" viewBox="0 0 1024 1024"><title>heart</title><path class="path1" d="M486.4 972.8c-4.283 0-8.566-1.074-12.434-3.222-4.808-2.67-119.088-66.624-235.122-171.376-68.643-61.97-123.467-125.363-162.944-188.418-50.365-80.443-75.901-160.715-75.901-238.584 0-148.218 120.582-268.8 268.8-268.8 50.173 0 103.462 18.805 150.051 52.952 27.251 19.973 50.442 44.043 67.549 69.606 17.107-25.565 40.299-49.634 67.55-69.606 46.589-34.147 99.878-52.952 150.050-52.952 148.218 0 268.8 120.582 268.8 268.8 0 77.869-25.538 158.141-75.901 238.584-39.478 63.054-94.301 126.446-162.944 188.418-116.034 104.754-230.314 168.706-235.122 171.376-3.867 2.149-8.15 3.222-12.434 3.222zM268.8 153.6c-119.986 0-217.6 97.614-217.6 217.6 0 155.624 120.302 297.077 221.224 388.338 90.131 81.504 181.44 138.658 213.976 158.042 32.536-19.384 123.845-76.538 213.976-158.042 100.922-91.261 221.224-232.714 221.224-388.338 0-119.986-97.616-217.6-217.6-217.6-87.187 0-171.856 71.725-193.314 136.096-3.485 10.453-13.267 17.504-24.286 17.504s-20.802-7.051-24.286-17.504c-21.456-64.371-106.125-136.096-193.314-136.096z">
+                </path></symbol></svg>
+
               </div>
 
               <!-- Slider -->
@@ -111,7 +128,12 @@
                 <div id="slider" ng-class="main.sliderMargin" ng-style="myStyle" ></div>
               </div>
 
+
+
             </div>
+
+
+
           </div>
         </div>
 
@@ -133,7 +155,7 @@
       </div>
     </div>
 
-    <div class="test"></div>
+
 
     <!-- <div data-icon="ei-archive"></div>
     <div data-icon="ei-chart" data-size="s"></div>
