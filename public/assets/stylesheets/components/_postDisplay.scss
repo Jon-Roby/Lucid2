@@ -31,6 +31,15 @@
   line-height: $base-line-height * 1.1;
 }
 
+#postDisplay-authorDetails {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#postDisplay-items div {
+  padding-bottom: $base-line-height;
+}
+
 
 
 // postDisplayDetails

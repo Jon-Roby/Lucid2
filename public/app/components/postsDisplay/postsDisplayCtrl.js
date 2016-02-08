@@ -49,4 +49,11 @@ angular.module('postsDisplayCtrl', ['postsDisplayService'])
 			console.log("hello");
 		}
 
+
+
+
+
+
+
+
 	});

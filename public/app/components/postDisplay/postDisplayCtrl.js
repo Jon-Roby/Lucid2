@@ -67,6 +67,8 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 					vm.authorDetails.upvotes = data.author.upvotes;
 					vm.postDetails = data.post;
 					vm.upvotes_count = vm.postDetails.upvotes.length;
+					console.log(vm.postDetails.upvotes.length);
+					console.log(vm.upvotes_count);
 					vm.viewerUpvoted = vm.postDetails.upvotes.includes(vm.viewerDetails._id);
 				});
 		};
@@ -96,12 +98,13 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 		};
 
 		vm.subscribeToAuthor = function() {
-
+			console.log("ches")
 			var subscriptionDetails = {};
 			subscriptionDetails.authorDetails = vm.authorDetails;
 			subscriptionDetails.viewerDetails = vm.viewerDetails;
 			PostDisplay.subscribeToAuthor(subscriptionDetails)
 				.success(function(data) {
+					console.log("casdf")
 					$rootScope.$broadcast('updateSubscriptions', data.viewerObject.subscriptions);
 					// vm.userData = data;
 				});
