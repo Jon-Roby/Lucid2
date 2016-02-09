@@ -225,11 +225,11 @@ module.exports = function(app, express) {
 		})
 		.put(function(req, res) {
 
-			cloudinary.config({
-				cloud_name: 'dole39ib3',
-				api_key: '129358821161582',
-				api_secret: 'MvRv6pGJ9F1mjEH_0ZG3Lahh6NU'
-			});
+			// cloudinary.config({
+			// 	cloud_name: 'dole39ib3',
+			// 	api_key: '129358821161582',
+			// 	api_secret: 'MvRv6pGJ9F1mjEH_0ZG3Lahh6NU'
+			// });
 
 			// console.log(req.decoded);
 			// console.log(req.body);

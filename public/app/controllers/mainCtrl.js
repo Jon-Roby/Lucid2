@@ -95,7 +95,6 @@ angular.module('mainCtrl', [])
   	vm.doLogin = function() {
   		vm.processing = true;
   		vm.error = '';
-      console.log("hello");
       Auth.logout();
 
   		Auth.login(vm.loginData.username, vm.loginData.password)
@@ -111,6 +110,21 @@ angular.module('mainCtrl', [])
 
 
   	};
+
+    vm.guestLogin = function() {
+      vm.processing = true;
+      vm.error = '';
+
+      Auth.login("guest", "guest")
+        .success(function(data) {
+          vm.processing = false;
+          if (data.success) {
+            $state.go('posts-trending');
+          } else {
+            vm.error = data.message;
+          }
+        });
+    }
 
   	vm.doLogout = function() {
       console.log("hello");
