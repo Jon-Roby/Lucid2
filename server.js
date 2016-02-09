@@ -11,8 +11,8 @@ if (process.env.NODE_ENV == undefined ) {
 var path 	     = require('path');
 
 
-
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '1mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {

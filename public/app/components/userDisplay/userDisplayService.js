@@ -33,7 +33,7 @@ angular.module('userDisplayService', [])
 	};
 
 	userDisplayFactory.uploadPhoto = function(id, photo) {
-
+		console.log("hasdfads")
 		return $http.put('/api/users/' + id + '/profile/', photo);
 	};
 

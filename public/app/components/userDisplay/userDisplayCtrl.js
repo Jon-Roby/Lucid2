@@ -1,6 +1,6 @@
 angular.module('userDisplayCtrl', ['userDisplayService'])
 
-.controller('userDisplayController', function(UserDisplay, $stateParams) {
+.controller('userDisplayController', function(UserDisplay, $stateParams, FileUploader) {
 
 	var vm = this;
 	vm.processing = true;
@@ -10,37 +10,40 @@ angular.module('userDisplayCtrl', ['userDisplayService'])
 			vm.userData = data;
 		});
 
+	vm.uploader = new FileUploader();
+
+
+	vm.upload = function() {
+		console.log(vm.uploader.queue[0]);
+		var photo = {file: vm.uploader.queue[0]._file} 
+		// UserDisplay.uploadPhoto($stateParams.user_id, photo);
+	}
+
 	vm.uploadPhoto = function() {
 		// Must be turned into object for AJAX request
 		console.log(vm.uploadedPhoto);
-		var uploadedPhoto = {'photo': vm.uploadedPhoto};
-		UserDisplay.uploadPhoto($stateParams.user_id, uploadedPhoto)
-			.success(function(data) {
-				vm.message = data.message;
-			});
+
+
+		// var uploadedPhoto = {'photo': vm.uploadedPhoto};
+		// UserDisplay.uploadPhoto($stateParams.user_id, uploadedPhoto)
+		// 	.success(function(data) {
+		// 		vm.message = data.message;
+		// 	});
 	};
 
-	// vm.add = function(){
-  // 	var file = document.getElementById('file').files[0];
-  //   var fileReader = new FileReader();
-	//
-	// 	// console.log(fileReader.readAsArrayBuffer(file));
-	//
-	// 	fileReader.onloadend = function(event)	{
-	//     var data = event.target.result;
-	//     	//send you binary data via $http or $resource or do anything else with it
-	// 			console.log(data);
-	// 			console.log("here");
-	// 	}
-	//
-	// 	fileReader.readAsBinaryString(file);
+
+
+	
 
 		vm.add = function(){
+	
 		  var f = document.getElementById('file').files[0],
 		      r = new FileReader();
+		  	 
 		  	r.onloadend = function(e){
 		    var data = e.target.result;
-				var photo = {"photo": data};
+		    console.log(data);
+				var photo = {photo: data};
 				UserDisplay.uploadPhoto($stateParams.user_id, photo)
 		    //send you binary data via $http or $resource or do anything else with it
 		  }

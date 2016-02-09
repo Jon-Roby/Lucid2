@@ -225,20 +225,22 @@ module.exports = function(app, express) {
 		})
 		.put(function(req, res) {
 
-			// cloudinary.config({
-			// 	cloud_name: 'sample',
-			// 	api_key: '874837483274837',
-			// 	api_secret: 'a676b67565c6767a6767d6767f676fe1'
-			// });
+			cloudinary.config({
+				cloud_name: 'dole39ib3',
+				api_key: '129358821161582',
+				api_secret: 'MvRv6pGJ9F1mjEH_0ZG3Lahh6NU'
+			});
 
-			console.log(req.decoded);
-			console.log(req.body);
-			console.log(req.body.photo);
-			console.log(req.body.photo.photo);
+			// console.log(req.decoded);
+			// console.log(req.body);
+			
+			// console.log(req.body.photo.photo);
+			console.log(req.body.file);
 
-			// cloudinary.uploader.upload(req.body.photo, function(result) {
-			// 	console.log(result)
-			// });
+			cloudinary.uploader.upload(req.body.file, function(result) {
+				console.log("made it here");
+				console.log(result)
+			});
 
 		});
 
