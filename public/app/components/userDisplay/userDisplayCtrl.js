@@ -10,13 +10,16 @@ angular.module('userDisplayCtrl', ['userDisplayService'])
 			vm.userData = data;
 		});
 
+	
+
 	vm.uploader = new FileUploader();
-
-
 	vm.upload = function() {
-		console.log(vm.uploader.queue[0]);
-		var photo = {file: vm.uploader.queue[0]._file} 
-		// UserDisplay.uploadPhoto($stateParams.user_id, photo);
+		console.log(vm.uploader.queue[0].formData);
+		console.log(vm.uploader.queue[0].file);
+
+		// var photo = {file: vm.uploader.queue[0]._file} 
+
+		UserDisplay.uploadPhoto($stateParams.user_id, vm.uploader.queue[0].file);
 	}
 
 	vm.uploadPhoto = function() {
@@ -31,23 +34,76 @@ angular.module('userDisplayCtrl', ['userDisplayService'])
 		// 	});
 	};
 
+	vm.processForm = function() {
+		var reader = new FileReader();
+    reader.onload = function (e) {
+        var data = this.result;
+    }
+    reader.readAsDataURL( file );
+	}
 
 
+	vm.add = function(){
 	
+		  var file = document.getElementById('file').files[0];
+		  var reader = new FileReader();
+		  console.log(file);
+		 	reader.readAsDataURL( file );
+		 	console.log(reader);
+		 	console.log(reader.result);
+		  // Cloudinary.upload(files, {}, function(err, res) {
+    //   	console.log(res.url);
+    // 	});
+
+		  // var form = new FormData();
+		  // form.append('file', file);
+		  // console.log(form);
+		  
+		  // UserDisplay.uploadPhoto($stateParams.user_id, form)
+		  	 
+		  // r.onloadend = function(e) {
+		  //   var data = e.target.result;
+		  //   console.log(data);
+				// var photo = {photo: data};
+				// UserDisplay.uploadPhoto($stateParams.user_id, photo)
+		    
+		  // }
+		  // reader.readAsBinaryString(file);
+
+		}
+	
+
+		// vm.add = function(){
+	
+		//   var f = document.getElementById('file').files[0],
+		//       r = new FileReader();
+		  	 
+		//   	r.onloadend = function(e){
+		//     var data = e.target.result;
+		//     console.log(data);
+		// 		var photo = {photo: data};
+		// 		UserDisplay.uploadPhoto($stateParams.user_id, photo)
+		//     //send you binary data via $http or $resource or do anything else with it
+		//   }
+		//   r.readAsBinaryString(f);
+		// }
 
 		vm.add = function(){
 	
-		  var f = document.getElementById('file').files[0],
-		      r = new FileReader();
+		  var file = document.getElementById('file').files[0];
+		  var reader = new FileReader();
 		  	 
-		  	r.onloadend = function(e){
-		    var data = e.target.result;
+		  reader.onloadend = function(event) {
+		    var data = event.target.result;
+		    console.log("a")
 		    console.log(data);
-				var photo = {photo: data};
-				UserDisplay.uploadPhoto($stateParams.user_id, photo)
+		    console.log("b")
+		    console.log(reader);
+				// var photo = {photo: data};
+				// UserDisplay.uploadPhoto($stateParams.user_id, photo)
 		    //send you binary data via $http or $resource or do anything else with it
 		  }
-		  r.readAsBinaryString(f);
+		  reader.readAsDataURL( file );
 		}
 
 

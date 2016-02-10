@@ -1,19 +1,29 @@
 
 
+
 /* postsDisplayView.html */
 
 .postsDisplay-container {
   @extend %column-container;
   background-color: white;
   border: 1px solid #fafafa;
+  width: 100%;
+  
 
   // padding: 0 $base-line-height;
 }
+
+
 
 .postsDisplay-header {
   @extend %column-header;
   color: $color-primary;
 }
+
+
+
+
+
 
 .lnr-file-empty {
   transform: translate(0px, 6px);
@@ -161,6 +171,13 @@
   color: $color-dark-gray;
   // font-size: .90em;
 }
+
+
+
+
+
+
+
 
 
 .lnr-bookmark {
