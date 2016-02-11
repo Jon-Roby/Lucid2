@@ -92,20 +92,32 @@
               <li><a href="/" class="first">L</a></li>
               <li><a href="/" class="second">U</a></li>
               <li><a href="/" class="first">C</a></li>
-              <li><a href="/" class="first">I</ai></li> <!-- <a><svg class="i"><use xlink:href="#lnr-pencil"></use></svg></a> -->
+              <li><a href="/" class="first">I</a></li> <!-- <a><svg class="i"><use xlink:href="#lnr-pencil"></use></svg></a> -->
               <li><a href="/" class="first">D</a></li>
             </ul>
           </div>
 
           <div id="navbar-options">
 
-            <div id="navbar-options-container">
-
               <!-- Navbar Options -->
               <div id="navbar-options-top">
-                <div ng-click="main.switchPage('posts-trending'); myStyle={'margin-left': '0px', 'width': '72px', 'transition': '.5s ease-in-out'}">    <div>trending</div>  </div>   <span class="navbar-options-space-filler"></span>
-                <div ng-click="main.switchPage('posts-popular'); myStyle={'margin-left': '102px', 'width': '65px', 'transition': '.5s ease-in-out'}"> <div>popular</div>   </div>   <span class="navbar-options-space-filler"></span>
-                <div ng-click="main.switchPage('posts-new'); myStyle={'margin-left': '197px', 'width': '35px', 'transition': '.5s ease-in-out'}" > <div>new</div>     </div>   
+
+                <div ng-click="main.switchPage('posts-trending'); myStyle={'margin-left': '0px', 'width': '72px', 'transition': '.5s ease-in-out'}">
+                  <div>trending</div>
+                </div>
+
+                <span class="navbar-options-space-filler"></span>
+
+                <div ng-click="main.switchPage('posts-popular'); myStyle={'margin-left': '102px', 'width': '65px', 'transition': '.5s ease-in-out'}">
+                  <div>popular</div>
+                </div>
+
+                <span class="navbar-options-space-filler"></span>
+                
+                <div ng-click="main.switchPage('posts-new'); myStyle={'margin-left': '197px', 'width': '35px', 'transition': '.5s ease-in-out'}">
+                  <div>new</div>
+                </div> 
+
               </div>
 
               <!-- Slider -->
@@ -113,9 +125,8 @@
                 <div id="slider" ng-class="main.sliderMargin" ng-style="myStyle" ></div>
               </div>
 
-            </div>
-
           </div>
+
         </div>
 
         <div id="navbar-container-right">
