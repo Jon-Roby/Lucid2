@@ -4,7 +4,7 @@
   <div id="icons-icon" ng-repeat="icon in icons.icons">
 
 
-      <div ng-mouseover="icons.showPopover()" ng-mouseleave="icons.hidePopover()"><div id="icon-photo"></div></div>
+      <div ng-mouseover="icons.showPopover()" ng-mouseleave="icons.hidePopover()"><img src="{{icon.photo}}" height='80' width='80'></img>
       <div id="icons-link"><a  href="/users/{{icon._id}}">{{ icon.username }}</a></div>
 
       <!-- <div class="popover" ng-show="icons.popoverIsVisible"> -->

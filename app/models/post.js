@@ -5,6 +5,7 @@ var ObjectId     = require('mongoose').Schema.ObjectId;
 var PostSchema   = new Schema({
 	authorId: String,
 	authorName: String,
+	authorImage: String,
 	title: String,
 	body: String,
 

@@ -43,34 +43,34 @@ angular.module('userDisplayCtrl', ['userDisplayService'])
 	}
 
 
-	vm.add = function(){
+	// vm.add = function(){
 	
-		  var file = document.getElementById('file').files[0];
-		  var reader = new FileReader();
-		  console.log(file);
-		 	reader.readAsDataURL( file );
-		 	console.log(reader);
-		 	console.log(reader.result);
-		  // Cloudinary.upload(files, {}, function(err, res) {
-    //   	console.log(res.url);
-    // 	});
+	// 	  var file = document.getElementById('file').files[0];
+	// 	  var reader = new FileReader();
+	// 	  console.log(file);
+	// 	 	reader.readAsDataURL( file );
+	// 	 	console.log(reader);
+	// 	 	console.log(reader.result);
+	// 	  // Cloudinary.upload(files, {}, function(err, res) {
+ //    //   	console.log(res.url);
+ //    // 	});
 
-		  // var form = new FormData();
-		  // form.append('file', file);
-		  // console.log(form);
+	// 	  // var form = new FormData();
+	// 	  // form.append('file', file);
+	// 	  // console.log(form);
 		  
-		  // UserDisplay.uploadPhoto($stateParams.user_id, form)
+	// 	  // UserDisplay.uploadPhoto($stateParams.user_id, form)
 		  	 
-		  // r.onloadend = function(e) {
-		  //   var data = e.target.result;
-		  //   console.log(data);
-				// var photo = {photo: data};
-				// UserDisplay.uploadPhoto($stateParams.user_id, photo)
+	// 	  // r.onloadend = function(e) {
+	// 	  //   var data = e.target.result;
+	// 	  //   console.log(data);
+	// 			// var photo = {photo: data};
+	// 			// UserDisplay.uploadPhoto($stateParams.user_id, photo)
 		    
-		  // }
-		  // reader.readAsBinaryString(file);
+	// 	  // }
+	// 	  // reader.readAsBinaryString(file);
 
-		}
+	// 	}
 	
 
 		// vm.add = function(){
@@ -88,19 +88,19 @@ angular.module('userDisplayCtrl', ['userDisplayService'])
 		//   r.readAsBinaryString(f);
 		// }
 
-		vm.add = function(){
+		vm.add = function() {
 	
 		  var file = document.getElementById('file').files[0];
 		  var reader = new FileReader();
 		  	 
 		  reader.onloadend = function(event) {
 		    var data = event.target.result;
-		    console.log("a")
+
 		    console.log(data);
-		    console.log("b")
 		    console.log(reader);
-				// var photo = {photo: data};
-				// UserDisplay.uploadPhoto($stateParams.user_id, photo)
+				var photo = {photo: data};
+				UserDisplay.uploadPhoto($stateParams.user_id, photo);
+				
 		    //send you binary data via $http or $resource or do anything else with it
 		  }
 		  reader.readAsDataURL( file );

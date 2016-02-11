@@ -225,37 +225,28 @@ module.exports = function(app, express) {
 		})
 		.post(function(req, res) {
 
-			
+			User.findById(req.params.user_id)
+				.then(function(user) {
+					cloudinary.config({
+					  cloud_name: CLOUD_NAME,
+					  api_key: API_KEY,
+					  api_secret: API_SECRET
+					});
 
-			// console.log(req.decoded);
-			
-			
-			// console.log(req.body.photo.photo);
-			console.log("API");
-			console.log(req.body);
-			var files = [];
-			files.push(req.body);
-			
-			// cloudinary.uploader.upload(files, function(result) {
-			
-			// 	console.log(result)
-			// });
-
-			// cloudinary.uploader.upload(files, 
-   //                         function(result) { console.log(result) },
-   //                         { 
-   //                           resource_type: "raw" });
-			
-			cloudinary.uploader.upload(files, {}, function(err, res) {
-
-      	console.log(res.url);
-     
-
-    	});
-
-			
+					cloudinary.uploader.upload(req.body.photo)
+						.then(function(res) {
+							user.photo = res.secure_url;
+    					user.save(function(err) {
+								if (err) res.send(err);	
+							});
+						}) 
+				});
 
 		});
+				
+
+			
+
 
 	// abstract this checking of the bookmark into another function
 	apiRouter.route('/users/:user_id/bookmark')
@@ -375,11 +366,6 @@ module.exports = function(app, express) {
 			}
 		});
 
-
-
-
-
-
 	apiRouter.route('/posts')
 
 		.get(function(req, res) {
@@ -391,38 +377,81 @@ module.exports = function(app, express) {
 
 		.post(function(req, res) {
 
-			var post = new Post();
-			post.title = req.body.title;
-			post.body = req.body.body;
+			User.findById(req.decoded._id, function(err, user) {
+				var post = new Post();
+				post.title = req.body.title;
+				post.body = req.body.body;
 
-			post.authorId = req.decoded._id;
-			post.authorName = req.decoded.username;
+				post.authorId = req.decoded._id;
+				post.authorName = req.decoded.username;
 
-			authorId = req.decoded._id;
+				post.authorImage = user.photo;
 
-			post.save(function(err, post) {
-				if (err) {
-					if (err.code == 11000)
-						return res.json({ success: false, message: 'A post with that postname already exists. '});
-					else
-						return res.send(err);
-				}
+				authorId = req.decoded._id;
 
-				User.findById(authorId, function(err, user) {
-					var object = {};
-					object[post.title] = post._id;
-					user.posts.push(object);
-					// if (err) res.send(err);
-					user.save(function(err) {
-
-					});
+				post.save(function(err, post) {
+					if (err) {
+						if (err.code == 11000)
+							return res.json({ success: false, message: 'A post with that postname already exists. '});
+						else
+							return res.send(err);
+					}
 				});
+
+				
+				var object = {};
+				object[post.title] = post._id;
+				user.posts.push(object);
+				// if (err) res.send(err);
+				user.save(function(err) {
+
+				});
+				
+
 				res.json({ message: 'Post created!' });
 			});
+		});
 
-	});
 
 
+			// })
+
+			// var post = new Post();
+			// post.title = req.body.title;
+			// post.body = req.body.body;
+
+			// post.authorId = req.decoded._id;
+			// post.authorName = req.decoded.username;
+
+			// post.authorImage = req.decoded.photo;
+			// console.log(post.authorImage);
+			// console.log(req.decoded);
+			// console.log(post);
+
+			// authorId = req.decoded._id;
+
+			// post.save(function(err, post) {
+			// 	if (err) {
+			// 		if (err.code == 11000)
+			// 			return res.json({ success: false, message: 'A post with that postname already exists. '});
+			// 		else
+			// 			return res.send(err);
+			// 	}
+
+			// 	User.findById(authorId, function(err, user) {
+			// 		var object = {};
+			// 		object[post.title] = post._id;
+			// 		user.posts.push(object);
+			// 		// if (err) res.send(err);
+			// 		user.save(function(err) {
+
+			// 		});
+			// 	});
+
+			// 	res.json({ message: 'Post created!' });
+			// });
+
+	// });
 
 	apiRouter.route('/posts/trending')
 
