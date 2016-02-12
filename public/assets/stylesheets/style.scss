@@ -37,11 +37,12 @@ body {
 	letter-spacing: .5px;
 
 	background-color: #fafafa;
+	background-color: #FAFDFF;
+	background-color: white;
+
 }
 
-.angular-view {
-	padding-top: 63px; //($base-line-height * 5) + 2px - This is the height of the navbar * 2/3 with 2px added because of the 2px border-top in th navbar
-}
+
 
 // Add styling for icons.
 /* Add the following CSS block to your own
@@ -73,12 +74,18 @@ stylesheet. */
 
 .lnr-pencil {
 	color: $color-primary;
-	color: green;
 }
 
 .lnr-pencil path {
 	fill: red;
 }
+
+@media (min-width: 701px) {
+	.angular-view {
+		padding-top: 78px; //($base-line-height * 5) + 2px - This is the height of the navbar * 2/3 with 2px added because of the 2px border-top in th navbar
+	}
+}
+
 
 
 

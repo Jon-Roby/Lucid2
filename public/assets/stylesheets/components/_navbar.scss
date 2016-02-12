@@ -160,7 +160,6 @@
 
   #navbar-container {
     // @extend %n-container;
-    min-width: 1100px;
     max-width: 1100px;
 
     margin-left: auto;
@@ -179,8 +178,8 @@
 
 #navbar-container-left {
   // @extend %n-container-left;
-    min-width: 875px;
-    max-width: 875px;
+    // min-width: 875px;
+    // max-width: 875px;
 
     display: flex;
     flex-direction: row;
@@ -214,13 +213,15 @@
 
 #navbar-options {
   // @extend %n-container-inner-right;
-  min-width: 700px;
-  max-width: 700px;
+  // min-width: 700px;
+  // max-width: 700px;
 
   @extend %column-container;
   display: flex;
   flex-direction: column;
   height: $base-line-height * 3;
+
+
 }
 
 #navbar-options-top {
@@ -233,6 +234,9 @@
   height: 58px;
   // width: $options-width * 3;
   // background-color: purple;
+  &:selected {
+    color: $color-primary;
+  }
 
 }
 
@@ -330,7 +334,43 @@ $navbar-options-space-filler: 30px;
 // }
 
 
+@media (min-width: 0px) and (max-width: 700px) {
 
+  #navbar-container {
+    width: 100%;
+  }
+
+  #navbar-options {
+    display: none;
+  }
+
+  .navbar-options {
+    padding-top: 60px;
+    background-color: $color-light-gray;
+
+  }
+
+  .angular-view {
+    padding-top: 20px;
+  }
+
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+
+  .navbar-options {
+    display: none;
+  }
+}
+
+@media (min-width: 1100px) {
+
+  .navbar-options {
+    display: none;
+  }
+  
+
+}
 
 
 
