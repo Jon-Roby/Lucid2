@@ -5,6 +5,13 @@ angular.module('postCreateCtrl', ['postCreateService'])
 		var vm = this;
 		vm.type = 'create';
 
+		// $sceDelegateProvider.resourceUrlWhitelist([
+		//    // Allow same origin resource loads.
+		//    '',
+		//    // Allow loading from our assets domain.  Notice the difference between * and **.
+		//    ]);
+		
+
 		vm.savePost = function() {
 			vm.processing = true;
 			vm.message = '';
