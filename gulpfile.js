@@ -15,6 +15,8 @@ var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var nodemon    = require('gulp-nodemon');
 
+var gzip = require('gulp-gzip');
+
 gulp.task('css', function() {
   return gulp.src('public/assets/stylesheets/style.scss')
     .pipe(sass())
@@ -41,6 +43,7 @@ gulp.task('scripts', function() {
     .pipe(ngAnnotate())
     .pipe(concat('all.js'))
     .pipe(uglify())
+    .pipe(gzip())
     .pipe(gulp.dest('public/app/dist'));
 });
 
@@ -51,6 +54,7 @@ gulp.task('angular', function() {
     .pipe(ngAnnotate())
     .pipe(concat('app.js'))
     .pipe(uglify())
+    .pipe(gzip())
     .pipe(gulp.dest('public/app/dist'));
 });
 
