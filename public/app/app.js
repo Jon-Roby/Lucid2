@@ -4,7 +4,7 @@ angular.module('myApp',
 	'app.routes',
 	'ngAnimate',
 	'angularMoment',
-	'angularFileUpload',
+	// 'angularFileUpload',
 	'authService',
 	'mainCtrl',
 

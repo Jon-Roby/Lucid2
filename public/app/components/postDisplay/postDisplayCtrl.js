@@ -11,7 +11,7 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 				}
 			}
 			return false;
-		}
+		};
 
 		PostDisplay.get($stateParams.post_id)
 			.success(function(data) {
@@ -81,8 +81,8 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 
 					vm.viewerDetails = object.data.user;
 					vm.viewerFavorited = arrayHasValue(vm.viewerDetails.favorites, vm.postDetails._id);
-				})
-		}
+				});
+		};
 
 		vm.bookmark = function() {
 			PostDisplay.bookmark(vm.viewerDetails._id, vm.postDetails)
@@ -98,13 +98,11 @@ angular.module('postDisplayCtrl', ['postDisplayService'])
 		};
 
 		vm.subscribeToAuthor = function() {
-			console.log("ches")
 			var subscriptionDetails = {};
 			subscriptionDetails.authorDetails = vm.authorDetails;
 			subscriptionDetails.viewerDetails = vm.viewerDetails;
 			PostDisplay.subscribeToAuthor(subscriptionDetails)
 				.success(function(data) {
-					console.log("casdf")
 					$rootScope.$broadcast('updateSubscriptions', data.viewerObject.subscriptions);
 					// vm.userData = data;
 				});

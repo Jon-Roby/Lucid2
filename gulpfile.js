@@ -15,8 +15,6 @@ var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var nodemon    = require('gulp-nodemon');
 
-var gzip = require('gulp-gzip');
-
 gulp.task('css', function() {
   return gulp.src('public/assets/stylesheets/style.scss')
     .pipe(sass())
@@ -40,6 +38,7 @@ gulp.task('scripts', function() {
   return gulp.src(['public/app/controllers/mainCtrl.js', 'public/app/services/authService.js', 'public/app/components/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
+    .pipe(ngAnnotate())
     .pipe(concat('all.js'))
     .pipe(uglify())
     .pipe(gulp.dest('public/app/dist'));

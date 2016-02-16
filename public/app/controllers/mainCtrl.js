@@ -51,8 +51,8 @@ angular.module('mainCtrl', [])
     // vm.sliderMargin = 'navbar-options-right';
 
     vm.switchPage = function(page) {
-      $state.go(page)
-    }
+      $state.go(page);
+    };
 
 
 		// vm.getSelected = function() {
@@ -124,10 +124,9 @@ angular.module('mainCtrl', [])
             vm.error = data.message;
           }
         });
-    }
+    };
 
   	vm.doLogout = function() {
-      console.log("hello");
 
   		Auth.logout();
   		vm.user = '';
