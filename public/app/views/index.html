@@ -4,33 +4,19 @@
     <meta charset="utf-8">
     <title>Lucid</title>
 
-    <!-- Use browserify and gulp to automate all of this -->
-
     <!-- Angular Routing html5Mode -->
 	  <base href='/'>
-
-    <!-- <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'> -->
-		<!-- <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6030954/606888/css/fonts.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6030954/6894952/css/fonts.css" /> -->
 
     <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
     <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/evil-icons/1.7.8/evil-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/evil-icons/1.7.8/evil-icons.min.js"></script> -->
-
-
     <!-- CSS -->
     <link rel="stylesheet" href="assets/stylesheets/style.min.css">
 
-    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
-
     <!-- Angular -->
     <script src="assets/libs/angular/angular.min.js"></script>
-    <!-- <script src="assets/libs/angular-route/angular-route.min.js"></script> -->
     <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="assets/libs/angular-animate/angular-animate.min.js"></script>
-
     <script src="assets/libs/angular-file-upload/dist/angular-file-upload.min.js"></script>
 
     <!-- load momentJS (required for angular-moment) -->
@@ -38,39 +24,14 @@
 		<!-- load angular-moment -->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 
-    <!-- Controllers -->
-    <script src="app/controllers/mainCtrl.js"></script>
-    <script src="app/components/postsDisplay/postsDisplayCtrl.js"></script>
-    <script src="app/components/icons/iconsCtrl.js"></script>
-    <script src="app/components/userSidebar/userSidebarCtrl.js"></script>
-    <script src="app/components/postDisplay/postDisplayCtrl.js"></script>
-    <script src="app/components/postAuthor/postAuthorCtrl.js"></script>
-    <script src="app/components/postCreate/postCreateCtrl.js"></script>
 
-    <script src="app/components/userDisplay/userDisplayCtrl.js"></script>
 
-    <!-- <script src="app/controllers/userCtrl.js"></script> -->
-
-    <!-- Services -->
-    <script src="app/services/authService.js"></script>
-    <script src="app/components/postsDisplay/postsDisplayService.js"></script>
-    <script src="app/components/icons/iconsService.js"></script>
-    <script src="app/components/userSidebar/userSidebarService.js"></script>
-    <script src="app/components/postDisplay/postDisplayService.js"></script>
-    <script src="app/components/postAuthor/postAuthorService.js"></script>
-    <script src="app/components/postCreate/postCreateService.js"></script>
-    <script src="app/components/userDisplay/userDisplayService.js"></script>
-
-    <!-- <script src="app/components/sharedDetails.js"></script> -->
-
-    <!-- <script src="app/services/userService.js"></script> -->
-
-    <!-- ng-file-upload -->
-<!-- <script src="ng-file-upload.min.js"></script> -->
+    <!-- Controllers and Services -->
+    <script src="app/dist/all.js"></script>
 
     <!-- Main Angular App Files -->
-    <script src="app/app.routes.js"></script>
-    <script src="app/app.js"></script>
+    <script src="app/dist/app.js"></script>
+
   </head>
 
   <body ng-app="myApp" ng-controller="mainController as main">

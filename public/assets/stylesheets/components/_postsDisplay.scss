@@ -8,7 +8,7 @@
   background-color: white;
   // border: 1px solid #fafafa;
   width: 100%;
-  
+
 
   // padding: 0 $base-line-height;
 }
@@ -170,6 +170,12 @@
   justify-content: space-between;
   color: $color-dark-gray;
   // font-size: .90em;
+}
+
+.postsDisplay-bottom:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
 
 

@@ -13,6 +13,10 @@
 						<div><time am-time-ago="post.createdAt"></time></div>
 					</div>
 				</div>
+
+				<div>
+
+				</div>
 				<!-- <div><svg class="lnr lnr-clock"><use xlink:href="#lnr-clock"></use></svg>7 minute read</div> -->
 
 				<div ng-click="postDisplay.bookmark()">
@@ -37,13 +41,12 @@
 
 
 
+
+				<div>
+
 				<div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg> {{post.views}}</div>
 
-				<div><svg class="lnr lnr-bubble"><use xlink:href="#lnr-bubble"></use></svg> 0</div>
-
-
-
-			<!-- 	<div ng-click="postDisplay.upvotePost()">
+				<div ng-click="postDisplay.upvotePost()">
 			    <svg ng-if="!postDisplay.viewerUpvoted" class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg>
 			    <svg ng-if="postDisplay.viewerUpvoted" class="lnr lnr-heart"><use xlink:href="#lnr-heart-filled"></use></svg>
 			    {{ post.upvotes_count }}
@@ -52,7 +55,11 @@
 			  <div ng-click="postDisplay.favoritePost()">
 			    <svg ng-if="!postDisplay.viewerFavorited" class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg>
 			    <svg ng-if="postDisplay.viewerFavorited" class="lnr lnr-star"><use xlink:href="#lnr-star-filled"></use></svg>
-			  </div> -->
+			  </div>
+
+				</div>
+
+				<div><svg class="lnr lnr-bubble"><use xlink:href="#lnr-bubble"></use></svg> 0</div>
 
 
 

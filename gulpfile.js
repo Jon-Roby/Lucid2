@@ -18,39 +18,39 @@ var nodemon    = require('gulp-nodemon');
 gulp.task('css', function() {
   return gulp.src('public/assets/stylesheets/style.scss')
     .pipe(sass())
-    // .pipe(sourcemaps.init())
-    // .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-    // .pipe(sourcemaps.write('.'))
-    // .pipe(csslint())
-    // .pipe(csslint.reporter())
+    .pipe(sourcemaps.init())
+    .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(csslint())
+    .pipe(csslint.reporter())
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('public/assets/stylesheets'));
 });
 
 gulp.task('js', function() {
-  return gulp.src(['server.js', 'public/app/*.js', 'public/app/**/*.js'])
+  return gulp.src(['server.js', 'public/app/*.js', 'public/app/**/*.js', 'public/app/components/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['public/app/*.js', 'public/app/**/*.js'])
+  return gulp.src(['public/app/controllers/mainCtrl.js', 'public/app/services/authService.js', 'public/app/components/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('all.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('public/dist'));
+    .pipe(gulp.dest('public/app/dist'));
 });
 
 gulp.task('angular', function() {
-  return gulp.src(['public/app/*.js', 'public/app/**/*.js'])
+  return gulp.src(['public/app/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(ngAnnotate())
     .pipe(concat('app.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('public/dist'));
+    .pipe(gulp.dest('public/app/dist'));
 });
 
 gulp.task('watch', function() {
