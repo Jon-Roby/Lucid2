@@ -15,6 +15,8 @@ var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var nodemon    = require('gulp-nodemon');
 
+var gzip = require('gulp-gzip');
+
 gulp.task('css', function() {
   return gulp.src('public/assets/stylesheets/style.scss')
     .pipe(sass())

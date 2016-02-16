@@ -13,24 +13,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/stylesheets/style.min.css">
 
-    <!-- Angular -->
-    <script src="assets/libs/angular/angular.min.js"></script>
-    <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="assets/libs/angular-animate/angular-animate.min.js"></script>
-    <script src="assets/libs/angular-file-upload/dist/angular-file-upload.min.js"></script>
 
-    <!-- load momentJS (required for angular-moment) -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-		<!-- load angular-moment -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
-
-
-
-    <!-- Controllers and Services -->
-    <script src="app/dist/all.js"></script>
-
-    <!-- Main Angular App Files -->
-    <script src="app/dist/app.js"></script>
 
   </head>
 
@@ -89,6 +72,8 @@
           </div>
 
         </div>
+
+
 
         <div id="navbar-container-right">
           <!-- <button ng-click="main.setSelected('charm')">setSelected{{main.selected}}</button>
@@ -150,11 +135,33 @@
 
     <svg class="lnr lnr-mustache"><use xlink:href="#lnr-mustache"></use></svg> lnr-mustache -->
 
-
+    <!-- <div ng-if="false">
+      <h1>Loading the application, please hold on</h1>
+      <div class='aCssSpinner'</div>
+    </div> -->
 
     <div class="angular-view" ui-view></div>
 
   </body>
+
+  <!-- Angular -->
+  <script src="assets/libs/angular/angular.min.js"></script>
+  <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="assets/libs/angular-animate/angular-animate.min.js"></script>
+  <script src="assets/libs/angular-file-upload/dist/angular-file-upload.min.js"></script>
+
+  <!-- load momentJS (required for angular-moment) -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <!-- load angular-moment -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
+
+
+  <!-- Controllers and Services -->
+  <script src="app/dist/all.js"></script>
+
+  <!-- Main Angular App Files -->
+  <script src="app/dist/app.js"></script>
 
 
   <svg>
