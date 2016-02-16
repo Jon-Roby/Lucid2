@@ -7,7 +7,7 @@
 
 			<div class="postsDisplay-top">
 				<div class="postsDisplay-top-left">
-					<img src="{{post.authorImage}}" height='40' width='40'></img>
+					<img class="picture" src="{{post.authorImage}}" height='40' width='40'></img>
 					<div>
 						<div class="postsDisplay-author">{{ post.authorName }}</div>
 						<div><time am-time-ago="post.createdAt"></time></div>
@@ -42,60 +42,29 @@
 
 
 
-				<div>
+				<div id="postsDisplay-bottom-left">
 
-				<div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg> {{post.views}}</div>
+					<div><svg class="lnr lnr-eye"><use xlink:href="#lnr-eye"></use></svg> {{post.views}}</div>
 
-				<div ng-click="postDisplay.upvotePost()">
-			    <svg ng-if="!postDisplay.viewerUpvoted" class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg>
-			    <svg ng-if="postDisplay.viewerUpvoted" class="lnr lnr-heart"><use xlink:href="#lnr-heart-filled"></use></svg>
-			    {{ post.upvotes_count }}
-			  </div>
+					<div ng-click="postDisplay.upvotePost()">
+				    <svg ng-if="!postDisplay.viewerUpvoted" class="lnr lnr-heart"><use xlink:href="#lnr-heart"></use></svg>
+				    <svg ng-if="postDisplay.viewerUpvoted" class="lnr lnr-heart"><use xlink:href="#lnr-heart-filled"></use></svg>
+				    {{ post.upvotes_count }}
+				  </div>
 
-			  <div ng-click="postDisplay.favoritePost()">
-			    <svg ng-if="!postDisplay.viewerFavorited" class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg>
-			    <svg ng-if="postDisplay.viewerFavorited" class="lnr lnr-star"><use xlink:href="#lnr-star-filled"></use></svg>
-			  </div>
+				  <div ng-click="postDisplay.favoritePost()">
+				    <svg ng-if="!postDisplay.viewerFavorited" class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg>
+				    <svg ng-if="postDisplay.viewerFavorited" class="lnr lnr-star"><use xlink:href="#lnr-star-filled"></use></svg>
+				  </div>
 
 				</div>
 
 				<div><svg class="lnr lnr-bubble"><use xlink:href="#lnr-bubble"></use></svg> 0</div>
 
-
+			</div>
 
   			<!-- Share -->
   			<!-- <div><svg class="lnr lnr-exit-up"><use xlink:href="#lnr-exit-up"></use></svg></div> -->
-
-
-
-
-			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		</div>
 	</div>

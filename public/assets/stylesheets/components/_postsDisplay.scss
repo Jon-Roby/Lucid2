@@ -60,7 +60,7 @@
   // height: 20%;
 
 
-
+  margin-top: 10px;
   height: $base-line-height * 3;
 
 
@@ -72,10 +72,13 @@
 }
 
 .picture {
-  height: $base-line-height * 2;
-  width: $base-line-height * 2;
-  border: 2px solid $color-secondary;
-  background-color: $color-primary;
+  // height: $base-line-height * 2;
+  // width: $base-line-height * 2;
+  // border: 2px solid $color-secondary;
+  // background-color: $color-primary;
+  // margin-right: $base-line-height;
+
+  // padding-right: $base-line-height;
   margin-right: $base-line-height;
 }
 
@@ -172,11 +175,16 @@
   // font-size: .90em;
 }
 
-.postsDisplay-bottom:first-child {
+#postsDisplay-bottom-left {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  div {
+    padding-right: $base-line-height * 1.5;
+  }
+
 }
+
 
 
 
