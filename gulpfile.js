@@ -43,7 +43,7 @@ gulp.task('scripts', function() {
     .pipe(ngAnnotate())
     .pipe(concat('all.js'))
     .pipe(uglify())
-    .pipe(gzip())
+    // .pipe(gzip({ append: true}))
     .pipe(gulp.dest('public/app/dist'));
 });
 
@@ -54,7 +54,7 @@ gulp.task('angular', function() {
     .pipe(ngAnnotate())
     .pipe(concat('app.js'))
     .pipe(uglify())
-    .pipe(gzip())
+    // .pipe(gzip({ append: true}))
     .pipe(gulp.dest('public/app/dist'));
 });
 

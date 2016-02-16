@@ -3,6 +3,9 @@ var app        = express();
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var mongoose   = require('mongoose');
+var compress = require('compression');
+
+
 
 if (process.env.NODE_ENV == undefined ) {
 	var config 	   = require('./config/auth');
@@ -10,7 +13,7 @@ if (process.env.NODE_ENV == undefined ) {
 
 var path 	     = require('path');
 
-
+app.use(compress());
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json());
