@@ -137,17 +137,6 @@ module.exports = function(app, express) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	apiRouter.route('/users')
 
 		.post(function(req, res) {
@@ -237,15 +226,15 @@ module.exports = function(app, express) {
 						.then(function(res) {
 							user.photo = res.secure_url;
     					user.save(function(err) {
-								if (err) res.send(err);	
+								if (err) res.send(err);
 							});
-						}) 
+						})
 				});
 
 		});
-				
 
-			
+
+
 
 
 	// abstract this checking of the bookmark into another function
@@ -398,7 +387,7 @@ module.exports = function(app, express) {
 					}
 				});
 
-				
+
 				var object = {};
 				object[post.title] = post._id;
 				user.posts.push(object);
@@ -406,7 +395,7 @@ module.exports = function(app, express) {
 				user.save(function(err) {
 
 				});
-				
+
 
 				res.json({ message: 'Post created!' });
 			});
